@@ -3,7 +3,7 @@ import { runPegWatch, formatTable } from './docs/js/peg-watch.js';
 import { fetchBackedSnapshot } from './docs/js/backed.js';
 import { STOCKS } from './docs/js/config.js';
 
-// Node has no CORS limits, so the CLI reads the xStocks public API live.
+// Node has no CORS limits, so the CLI reads the xStocks public API directly.
 let issuer = null;
 let issuerError = null;
 try {

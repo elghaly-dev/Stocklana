@@ -131,7 +131,7 @@ function render(result, dh) {
   issuerMetaEl.innerHTML = result.issuerFetchedAt
     ? `xStocks issuer data (quote, multiplier, halt, PoR) snapshot fetched ${escapeHtml(utc(result.issuerFetchedAt))} — <strong>data age ${Math.max(0, Math.round((Date.now() - new Date(result.issuerFetchedAt)) / 60000))} min</strong>`
     : unk('xStocks issuer snapshot not loaded');
-  metaEl.textContent = `Jupiter + Pyth prices fetched live ${new Date(result.fetchedAt).toLocaleString()} (${result.fetchedAt}) · US market ${result.marketLabel} · slot ${result.slot ?? 'UNKNOWN'}`;
+  metaEl.textContent = `Jupiter + Pyth prices fetched ${new Date(result.fetchedAt).toLocaleString()} (${result.fetchedAt}) · US market ${result.marketLabel} · slot ${result.slot ?? 'UNKNOWN'}`;
 }
 
 async function refresh() {
