@@ -98,7 +98,7 @@
     <p>
       xStocks quote, multiplier, trading-halt status and proof of reserves come from the
       <a href="https://docs.xstocks.fi/apis/openapi">xStocks (Backed) public API</a> (no key). That API does not allow browser
-      (CORS) requests, so a GitHub Action writes <a href="data/xstocks.json">data/xstocks.json</a> on a ~30-minute schedule (refreshed
+      (CORS) requests, so a GitHub Action writes <a href="https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/xstocks.json">xstocks.json</a> to the <code>data</code> branch on a ~30-minute schedule (refreshed
       by manual run when the schedule does not fire); the fetch time and age of each value is shown. Quote vs Jupiter / Pyth: MATCH within 1%, else DIFF.
       Multiplier: Jupiter prices are per scaled (UI) token = 1 share, so the premium compares them with the share price directly;
       equivalently, raw-token price = Jupiter × multiplier vs fair value per raw token = underlying × multiplier.
@@ -156,7 +156,7 @@
       </p>
       <p>
         The PreStocks API does not allow browser (CORS) requests, so a GitHub Action fetches it on a ~30-minute schedule
-        (manual run when the schedule does not fire) and writes <a href="data/prestocks.json">data/prestocks.json</a>; this page reads that file and shows its age.
+        (manual run when the schedule does not fire) and writes <a href="https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/prestocks.json">prestocks.json</a> to the <code>data</code> branch; this page reads that file and shows its age.
       </p>
       <p class="thresholds">
         Depth-adjusted: indicative Jupiter quote-API quotes (never a swap) for buying / selling ~$1,000 and ~$10,000 with USDC;

@@ -106,7 +106,7 @@ non-zero `newMultiplier` + `activationDateTime`; otherwise "none announced".
 and Tron, while `circulatingSupply` is aggregated across chains; doing the exclusion correctly would need per-chain balances for every
 wallet, so it is skipped rather than approximated.
 The API sends no CORS headers, so `scripts/fetch-xstocks.mjs` runs in the scheduled GitHub Action (same workflow as PreStocks) and writes
-[`docs/data/xstocks.json`](docs/data/xstocks.json) with `fetched_at`; the CLI calls the API live.
+[`xstocks.json`](https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/xstocks.json) to the `data` branch with `fetched_at`; the CLI calls the API live.
 
 ## Depth-adjusted premium
 
@@ -129,17 +129,18 @@ The page shows these next to the headline premium, labelled **at $1k** / **at $1
 
 ## Premium history
 
-`docs/data/history.json` is append-only: one point per Action run (headline premium + $10k buy/sell premiums), capped at 14 days.
+`history.json` (on the `data` branch) is append-only: one point per Action run (headline premium + $10k buy/sell premiums), capped at 14 days.
 It was seeded once (`scripts/seed-history.mjs`) from the real `docs/data/prestocks.json` snapshots in git history — those older
 points have the PreStocks headline premium only (no depth, no xStocks), with the snapshot's own `fetched_at` and the commit sha as
 `source`. Each row shows a sparkline (tap for a larger chart) with point count and time range. Missing values are gaps; nothing is interpolated.
 
 ## Open JSON feeds
 
-All feeds are static files on GitHub Pages (CORS-friendly), refreshed by the Action on a ~30-minute schedule (manual dispatch when the schedule does not fire). Timestamps are ISO 8601 UTC.
+All feeds are files on the `data` branch, served by `raw.githubusercontent.com` (CORS-friendly) and refreshed by the Action on a ~30-minute schedule (manual dispatch when the schedule does not fire). Timestamps are ISO 8601 UTC.
+The Action writes to `data` because `main` is protected. `docs/data/` on `main` holds an older copy that the page uses only when the `data` branch can't be read; the PreStocks tab then says so, and every value still shows its own age.
 Anyone may read them; a failed value is recorded as `null` / `status: "UNKNOWN"` with an `error`, never as 0.
 
-### `https://alarm2024.github.io/Stocklana/data/prestocks.json`
+### `https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/prestocks.json`
 
 | Field | Description |
 |-------|-------------|
@@ -153,7 +154,7 @@ Anyone may read them; a failed value is recorded as `null` / `status: "UNKNOWN"`
 | `tokens[].checks.supply` | `{status, prestocks, onchain, slot, rpc, fetched_at}` vs `getTokenSupply` |
 | `tokens[].checks.mint_exists` | `{status: EXISTS/NOT FOUND/NOT A MINT/UNKNOWN, owner_program, slot, fetched_at}` |
 
-### `https://alarm2024.github.io/Stocklana/data/xstocks.json`
+### `https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/xstocks.json`
 
 | Field | Description |
 |-------|-------------|
@@ -169,7 +170,7 @@ Anyone may read them; a failed value is recorded as `null` / `status: "UNKNOWN"`
 
 Every sub-object has `ok`; when `ok` is `false` it carries `error` instead of values.
 
-### `https://alarm2024.github.io/Stocklana/data/depth.json`
+### `https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/depth.json`
 
 | Field | Description |
 |-------|-------------|
@@ -181,7 +182,7 @@ Every sub-object has `ok`; when `ok` is `false` it carries `error` instead of va
 | `tokens[].mint_info` | `{decimals, multiplier, fetched_at}` read on-chain |
 | `tokens[].legs.{buy,sell}_{1000,10000}` | `{status: OK/NO ROUTE/UNKNOWN, fetched_at, usdc, ui_tokens, effective_price, premium_vs_ref, price_impact_vs_jupiter_price, jupiter_price_impact_pct, route[], context_slot, quote_host, error?}` |
 
-### `https://alarm2024.github.io/Stocklana/data/history.json`
+### `https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/history.json`
 
 | Field | Description |
 |-------|-------------|
@@ -238,7 +239,8 @@ Every number shows its fetch time; any failure shows **UNKNOWN** plus the reason
 The GitHub Action [`.github/workflows/prestocks-snapshot.yml`](.github/workflows/prestocks-snapshot.yml) is scheduled every ~30 minutes (cron
 `13,43 * * * *`, plus `workflow_dispatch`; GitHub may delay or skip scheduled runs — snapshots are then refreshed by manual dispatch,
 and the page always shows the actual data age), executes `node scripts/fetch-prestocks.mjs` (PreStocks API + all on-chain checks), and commits
-[`docs/data/prestocks.json`](docs/data/prestocks.json) with `fetched_at`. The page reads that one file and shows the data age.
+[`prestocks.json`](https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/prestocks.json) to the `data` branch with `fetched_at`. Each run starts from the files on `data`, so
+history keeps growing. The page reads that one file and shows the data age.
 If a refresh fails, the previous snapshot is kept and the failed attempt (time + error) is shown on the page.
 
 ```bash
@@ -279,12 +281,13 @@ node scripts/fetch-prestocks.mjs   # refresh docs/data/prestocks.json locally
 docs/           Static web app (GitHub Pages, served from main /docs)
   index.html
   js/           Shared fetch + peg logic (also used by CLI); prestocks.js renders the PreStocks tab
-  data/         prestocks.json, xstocks.json, depth.json, history.json snapshots (written by the GitHub Action)
+  data/         older copies of the snapshots, used only when the data branch can't be read
 scripts/fetch-prestocks.mjs   PreStocks API + on-chain checks -> docs/data/prestocks.json
 scripts/fetch-xstocks.mjs     xStocks public API -> docs/data/xstocks.json
 scripts/fetch-depth.mjs       Jupiter $1k/$10k quotes -> docs/data/depth.json + history.json
 scripts/seed-history.mjs      one-off seed of history.json from git history
-.github/workflows/prestocks-snapshot.yml   ~30-minute schedule + workflow_dispatch
+.github/workflows/prestocks-snapshot.yml   ~30-minute schedule + workflow_dispatch; commits snapshots to the data branch
+data branch     prestocks.json, xstocks.json, depth.json, history.json (written by the Action only)
 cli.js          Terminal table
 DEMO_SCRIPT.md  2-minute hackathon video script
 ```

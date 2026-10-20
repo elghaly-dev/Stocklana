@@ -6,7 +6,7 @@
  *   GET /public/assets/{symbol}/multiplier?network=Solana -> { currentMultiplier, newMultiplier, activationDateTime, reason }
  *   GET /public/system/status/{symbol}               -> { symbol, isMarketTradingHalted, isAtomicTradingHalted }
  *   GET /public/proof-of-reserves/{symbol}           -> { symbol, timestamp, sharesHeld, circulatingSupply, holdings[] }
- * api.backed.fi sends no CORS headers, so the browser reads docs/data/xstocks.json written by
+ * api.backed.fi sends no CORS headers, so the browser reads xstocks.json (data branch) written by
  * scripts/fetch-xstocks.mjs (GitHub Action). This module runs in Node (Action + CLI).
  */
 /** Production server per docs.xstocks.fi is api.xstocks.fi; api.backed.fi serves the same API and is the fallback. */

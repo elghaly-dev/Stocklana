@@ -1,19 +1,20 @@
 /**
- * Shared UI helpers: depth-adjusted premiums (docs/data/depth.json), premium history
- * (docs/data/history.json) sparklines + chart dialog, and mobile card labels.
+ * Shared UI helpers: depth-adjusted premiums (depth.json), premium history (history.json)
+ * sparklines + chart dialog, and mobile card labels.
  * Values are rendered only if present in the JSON; otherwise UNKNOWN / NO ROUTE with the reason.
  */
+import { fetchSnapshot } from './data-source.js';
+
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
 const pct = (v) => (isNum(v) ? `${v > 0 ? '+' : ''}${(v * 100).toFixed(2)}%` : 'UNKNOWN');
 const utc = (iso) => (iso ? new Date(iso).toISOString().replace('T', ' ').slice(0, 16) + ' UTC' : 'UNKNOWN');
 
-async function loadJson(path) {
+async function loadJson(name) {
   try {
-    const res = await fetch(`${path}?t=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`${path} HTTP ${res.status}`);
-    return { data: await res.json(), error: null };
+    const { data } = await fetchSnapshot(name);
+    return { data, error: null };
   } catch (e) {
     return { data: null, error: String(e.message || e) };
   }
@@ -21,7 +22,7 @@ async function loadJson(path) {
 
 let cache = null;
 export function loadDepthAndHistory() {
-  if (!cache) cache = Promise.all([loadJson('data/depth.json'), loadJson('data/history.json')]).then(([d, h]) => ({ depth: d, history: h }));
+  if (!cache) cache = Promise.all([loadJson('depth.json'), loadJson('history.json')]).then(([d, h]) => ({ depth: d, history: h }));
   return cache;
 }
 export function reloadDepthAndHistory() {

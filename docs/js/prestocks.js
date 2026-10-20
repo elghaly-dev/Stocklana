@@ -8,6 +8,7 @@ const metaEl = document.getElementById('ps-meta');
 const summaryEl = document.getElementById('ps-summary');
 const btn = document.getElementById('ps-refresh');
 const depthMetaEl = document.getElementById('ps-depth-meta');
+import { fetchSnapshot } from './data-source.js';
 import { loadDepthAndHistory, reloadDepthAndHistory, findDepth, depthCell, sparkCell, wireCharts, historySummary, labelCells } from './depth.js';
 wireCharts(tbody, async () => (await loadDepthAndHistory()).history);
 
@@ -105,13 +106,11 @@ async function load() {
   statusEl.textContent = 'Loading snapshot…';
   btn.disabled = true;
   try {
-    const res = await fetch(`data/prestocks.json?t=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const { data, fallback } = await fetchSnapshot('prestocks.json');
     render(data, await reloadDepthAndHistory());
-    statusEl.textContent = '';
+    statusEl.textContent = fallback ? 'The data branch could not be read, so this is the copy bundled with the site. Check the ages below.' : '';
   } catch (e) {
-    tbody.innerHTML = `<tr><td colspan="10">${unknown(`could not load data/prestocks.json: ${e.message || e}`)}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10">${unknown(`could not load prestocks.json: ${e.message || e}`)}</td></tr>`;
     metaEl.textContent = '';
     statusEl.textContent = '';
   } finally {

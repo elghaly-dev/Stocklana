@@ -19,6 +19,16 @@ export const PYTH_PROGRAMS = {
   upgraded: { priceFeed: 'pyt2F414BA6dPttK6RddPZUdHfapoBN24GL5wbrPCou', receiver: 'rec2HHDDnjLfj4kE7VyEtFA1HPGQLK33259532cRyHp' },
 };
 
+/**
+ * Where the page reads the snapshot JSON files, in order. The Action writes them to the `data`
+ * branch, because main is protected. docs/data/ is the copy bundled with the site, used only when
+ * the data branch can't be read.
+ */
+export const DATA_SOURCES = [
+  'https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/',
+  'data/',
+];
+
 export const ENDPOINTS = {
   jupiterPrice: 'https://api.jup.ag/price/v3',
   pythHermesMeta: 'https://hermes.pyth.network/v2/price_feeds',
