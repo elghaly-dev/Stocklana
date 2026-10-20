@@ -1,0 +1,1223 @@
+{
+  "fetched_at": "2026-10-20T19:30:21.908Z",
+  "completed_at": "2026-10-20T19:32:26.065Z",
+  "sources": {
+    "quote": [
+      "https://lite-api.jup.ag/swap/v1/quote",
+      "https://api.jup.ag/swap/v1/quote"
+    ],
+    "price": "https://api.jup.ag/price/v3",
+    "solana_rpc": [
+      "https://api.mainnet-beta.solana.com",
+      "https://solana-rpc.publicnode.com"
+    ]
+  },
+  "sizes_usd": [
+    1000,
+    10000
+  ],
+  "note": "Indicative Jupiter quotes only (quote API, slippageBps=50). Not executable guarantees, not arbitrage.",
+  "tokens": [
+    {
+      "group": "prestocks",
+      "symbol": "ANDURIL",
+      "mint": "PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB",
+      "ref": 138.14869034,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 143.8740229215772,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:22.269Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 6.792914736,
+          "effective_price": 147.2122113796542,
+          "premium_vs_ref": 0.0656069993667534,
+          "price_impact_vs_jupiter_price": 0.023202162491116285,
+          "jupiter_price_impact_pct": "0.0224603543537580846585313455",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346558,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:23.573Z",
+          "status": "OK",
+          "usdc": 996.607609,
+          "ui_tokens": 6.950525047,
+          "effective_price": 143.38594599125398,
+          "premium_vs_ref": 0.037910280860169454,
+          "price_impact_vs_jupiter_price": -0.003392390929314981,
+          "jupiter_price_impact_pct": "0.0036122731212791430134686183",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346563,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:24.695Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 67.566234243,
+          "effective_price": 148.00292057176503,
+          "premium_vs_ref": 0.07133060912494082,
+          "price_impact_vs_jupiter_price": 0.0286980065361655,
+          "jupiter_price_impact_pct": "0.02768288361520225675615419",
+          "route": [
+            "Raydium CLMM",
+            "Meteora DLMM",
+            "Manifest"
+          ],
+          "context_slot": 459346566,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:25.934Z",
+          "status": "OK",
+          "usdc": 9911.757805,
+          "ui_tokens": 69.505250475,
+          "effective_price": 142.60444696282494,
+          "premium_vs_ref": 0.03225333958547716,
+          "price_impact_vs_jupiter_price": -0.008824219501002428,
+          "jupiter_price_impact_pct": "0.0090429032650579392784758523",
+          "route": [
+            "Raydium CLMM",
+            "Manifest"
+          ],
+          "context_slot": 459346600,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "ANTHROPIC",
+      "mint": "Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw",
+      "ref": 976.01271508,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 998.7519610687278,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:33.229Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 0.977934127,
+          "effective_price": 1022.5637621091016,
+          "premium_vs_ref": 0.047695123546916074,
+          "price_impact_vs_jupiter_price": 0.02384155623073192,
+          "jupiter_price_impact_pct": "0.0230708323382161574836746161",
+          "route": [
+            "Kipseli",
+            "Manifest"
+          ],
+          "context_slot": 459346606,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:34.383Z",
+          "status": "OK",
+          "usdc": 1000.009369,
+          "ui_tokens": 1.001249598,
+          "effective_price": 998.7613188534833,
+          "premium_vs_ref": 0.023307692022863424,
+          "price_impact_vs_jupiter_price": 0.000009369478229048767,
+          "jupiter_price_impact_pct": "0.0002112632463702208463985242",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346611,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:35.505Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 9.763909755,
+          "effective_price": 1024.1798880698482,
+          "premium_vs_ref": 0.049350968738045564,
+          "price_impact_vs_jupiter_price": 0.025459701700020432,
+          "jupiter_price_impact_pct": "0.0246123980417219041741721359",
+          "route": [
+            "Meteora DLMM",
+            "Raydium CLMM",
+            "Kipseli",
+            "Manifest"
+          ],
+          "context_slot": 459346617,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:36.697Z",
+          "status": "OK",
+          "usdc": 9985.663443,
+          "ui_tokens": 10.012495985,
+          "effective_price": 997.3200946057608,
+          "premium_vs_ref": 0.02183104707197825,
+          "price_impact_vs_jupiter_price": -0.0014336557211210854,
+          "jupiter_price_impact_pct": "0.0016539700701219734646545669",
+          "route": [
+            "Raydium CLMM",
+            "Meteora DLMM"
+          ],
+          "context_slot": 459346623,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "FIGUREAI",
+      "mint": "PreZad18qfPtbxNpMtMuAuX2zVpvkEU8DnJx56faCWd",
+      "ref": 186.17214176,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 181.5085397217745,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:38.011Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 5.376728219,
+          "effective_price": 185.98671148492357,
+          "premium_vs_ref": -0.0009960151573883413,
+          "price_impact_vs_jupiter_price": 0.024671961826222777,
+          "jupiter_price_impact_pct": "0.0238625466404002660802221164",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346659,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:45.247Z",
+          "status": "OK",
+          "usdc": 999.736871,
+          "ui_tokens": 5.509382652,
+          "effective_price": 181.4607795733844,
+          "premium_vs_ref": -0.025306483247580336,
+          "price_impact_vs_jupiter_price": -0.00026312893301494444,
+          "jupiter_price_impact_pct": "0.0004837015361104939267668878",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346664,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:46.453Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 53.548937915,
+          "effective_price": 186.7450670239871,
+          "premium_vs_ref": 0.0030773952459852705,
+          "price_impact_vs_jupiter_price": 0.02885003267746744,
+          "jupiter_price_impact_pct": "0.0278265562736375624694615891",
+          "route": [
+            "Raydium CLMM",
+            "Meteora DLMM"
+          ],
+          "context_slot": 459346670,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:47.666Z",
+          "status": "OK",
+          "usdc": 9875.295507,
+          "ui_tokens": 55.093826524,
+          "effective_price": 179.24504667865318,
+          "premium_vs_ref": -0.03720801090786574,
+          "price_impact_vs_jupiter_price": -0.012470449305530762,
+          "jupiter_price_impact_pct": "0.0126883285995074939301193293",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346675,
+          "quote_host": "api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "KALSHI",
+      "mint": "PreLWGkkeqG1s4HEfFZSy9moCrJ7btsHuUtfcCeoRua",
+      "ref": 978.10068976,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 935.0003399580768,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:48.789Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 1.052014932,
+          "effective_price": 950.5568500809073,
+          "premium_vs_ref": -0.028160535993335456,
+          "price_impact_vs_jupiter_price": 0.016637972691569303,
+          "jupiter_price_impact_pct": "0.0255583353688591204666573888",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346680,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:49.908Z",
+          "status": "OK",
+          "usdc": 989.879734,
+          "ui_tokens": 1.069518328,
+          "effective_price": 925.5378875564253,
+          "premium_vs_ref": -0.05373966377272699,
+          "price_impact_vs_jupiter_price": -0.01012026626864726,
+          "jupiter_price_impact_pct": "0.0007819727108373406760489587",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346712,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:57.071Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 10.459563959,
+          "effective_price": 956.0627994817542,
+          "premium_vs_ref": -0.022531310435588536,
+          "price_impact_vs_jupiter_price": 0.022526686487217562,
+          "jupiter_price_impact_pct": "0.0311701283415009386370087078",
+          "route": [
+            "Kipseli",
+            "Meteora DLMM",
+            "Raydium CLMM",
+            "Manifest"
+          ],
+          "context_slot": 459346718,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:30:58.472Z",
+          "status": "OK",
+          "usdc": 9839.849205,
+          "ui_tokens": 10.695183277,
+          "effective_price": 920.0262351894992,
+          "premium_vs_ref": -0.05937471998384014,
+          "price_impact_vs_jupiter_price": -0.01601507949103953,
+          "jupiter_price_impact_pct": "0.0067323962204830937769814455",
+          "route": [
+            "Whirlpool",
+            "Meteora DLMM",
+            "GoonFi V2",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346724,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "NEURALINK",
+      "mint": "PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S",
+      "ref": 327.20068275,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 390.82393076477354,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:30:59.646Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 2.492892232,
+          "effective_price": 401.14048540225866,
+          "premium_vs_ref": 0.22597692043556306,
+          "price_impact_vs_jupiter_price": 0.026396936895080714,
+          "jupiter_price_impact_pct": "0.0255030550151791574703145295",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346730,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:00.770Z",
+          "status": "OK",
+          "usdc": 999.058261,
+          "ui_tokens": 2.558696951,
+          "effective_price": 390.4558766170195,
+          "premium_vs_ref": 0.19332231624757967,
+          "price_impact_vs_jupiter_price": -0.0009417390256369895,
+          "jupiter_price_impact_pct": "0.0011621619065415564304254051",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346735,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:01.950Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 24.79251546,
+          "effective_price": 403.34753511130816,
+          "premium_vs_ref": 0.23272216830760306,
+          "price_impact_vs_jupiter_price": 0.0320441082561862,
+          "jupiter_price_impact_pct": "0.030835338001127831997374023",
+          "route": [
+            "GoonFi V2",
+            "BisonFi",
+            "Meteora DLMM",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346769,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:09.253Z",
+          "status": "OK",
+          "usdc": 9906.168591,
+          "ui_tokens": 25.586969509,
+          "effective_price": 387.15677476051195,
+          "premium_vs_ref": 0.18323950765201125,
+          "price_impact_vs_jupiter_price": -0.009383140886704666,
+          "jupiter_price_impact_pct": "0.0096017013355672365380008982",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346775,
+          "quote_host": "api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "OPENAI",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "ref": 1051.555954826975,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 1574.3686749454164,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1.4861347,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:10.484Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 0.6136224882287407,
+          "effective_price": 1629.6664792820127,
+          "premium_vs_ref": 0.5497667735143594,
+          "price_impact_vs_jupiter_price": 0.035123796107359384,
+          "jupiter_price_impact_pct": "0.0107247299481910115759603834",
+          "route": [
+            "Kipseli",
+            "Manifest"
+          ],
+          "context_slot": 459346782,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:11.605Z",
+          "status": "OK",
+          "usdc": 1010.62441,
+          "ui_tokens": 0.6351752399390338,
+          "effective_price": 1591.095411869334,
+          "premium_vs_ref": 0.5130867782790842,
+          "price_impact_vs_jupiter_price": 0.01062440912989926,
+          "jupiter_price_impact_pct": "0.0000623479587205812651648809",
+          "route": [
+            "Raydium CLMM",
+            "Meteora DLMM",
+            "Raydium CLMM",
+            "Byreal"
+          ],
+          "context_slot": 459346787,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:12.942Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 6.127751799727728,
+          "effective_price": 1631.9198829894392,
+          "premium_vs_ref": 0.5519096967673569,
+          "price_impact_vs_jupiter_price": 0.03655510234667125,
+          "jupiter_price_impact_pct": "0.0249554305993521219485213155",
+          "route": [
+            "Raydium CLMM",
+            "Meteora DLMM"
+          ],
+          "context_slot": 459346793,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:14.194Z",
+          "status": "OK",
+          "usdc": 10093.195898,
+          "ui_tokens": 6.3517523934458,
+          "effective_price": 1589.0411453089534,
+          "premium_vs_ref": 0.5111332288260564,
+          "price_impact_vs_jupiter_price": 0.009319589875634193,
+          "jupiter_price_impact_pct": "0.0033096275374836534648432259",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346827,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "OURA",
+      "mint": "Pre9atBqkocK1QngFy7Q7zvyQictEFpXdLi6bZ2qnYy",
+      "ref": 71.53112014,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 70.35014665490483,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:21.600Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 13.822790575,
+          "effective_price": 72.34429217271129,
+          "premium_vs_ref": 0.011368087499814994,
+          "price_impact_vs_jupiter_price": 0.028346003706126277,
+          "jupiter_price_impact_pct": "0.0273353892101510774423884965",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346834,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:22.912Z",
+          "status": "OK",
+          "usdc": 999.005061,
+          "ui_tokens": 14.214611448,
+          "effective_price": 70.2801525496893,
+          "premium_vs_ref": -0.01748843842878889,
+          "price_impact_vs_jupiter_price": -0.0009949390092799382,
+          "jupiter_price_impact_pct": "0.0012304143721950785324724898",
+          "route": [
+            "Raydium CLMM",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346839,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:24.044Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 136.074596398,
+          "effective_price": 73.48910277676912,
+          "premium_vs_ref": 0.027372458769511443,
+          "price_impact_vs_jupiter_price": 0.044619041624207156,
+          "jupiter_price_impact_pct": "0.0424875235885829939775229269",
+          "route": [
+            "Kipseli",
+            "Raydium CLMM",
+            "Raydium CLMM",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346845,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:25.235Z",
+          "status": "OK",
+          "usdc": 9907.82118,
+          "ui_tokens": 142.146114479,
+          "effective_price": 69.70166730420011,
+          "premium_vs_ref": -0.025575621243163815,
+          "price_impact_vs_jupiter_price": -0.00921788200223328,
+          "jupiter_price_impact_pct": "0.0094514191362434846368422166",
+          "route": [
+            "Raydium CLMM",
+            "Raydium CLMM",
+            "Meteora DLMM"
+          ],
+          "context_slot": 459346850,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "prestocks",
+      "symbol": "POLYMARKET",
+      "mint": "Pre8AREmFPtoJFT8mQSXQLh56cwJmM7CFDRuoGBZiUP",
+      "ref": 140.76078608,
+      "ref_label": "PreStocks markPrice (as published by the PreStocks API)",
+      "ref_fetched_at": "2026-10-20T19:30:16.117Z",
+      "headline_premium": null,
+      "headline_fetched_at": "2026-10-20T19:30:16.117Z",
+      "jupiter_price": 141.80501763972512,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 9,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:26.359Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 6.872490843,
+          "effective_price": 145.5076511332938,
+          "premium_vs_ref": 0.03372292231016627,
+          "price_impact_vs_jupiter_price": 0.026110736807464008,
+          "jupiter_price_impact_pct": "0.0252165486893280747391884925",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346882,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:33.579Z",
+          "status": "OK",
+          "usdc": 999.751763,
+          "ui_tokens": 7.051936643,
+          "effective_price": 141.76981637978676,
+          "premium_vs_ref": 0.0071684048369358155,
+          "price_impact_vs_jupiter_price": -0.000248237054825462,
+          "jupiter_price_impact_pct": "0.0004838884227688199847251073",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346888,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:34.950Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 68.332667412,
+          "effective_price": 146.34288955393367,
+          "premium_vs_ref": 0.039656665960654314,
+          "price_impact_vs_jupiter_price": 0.032000785231292905,
+          "jupiter_price_impact_pct": "0.0307800345055528485759416515",
+          "route": [
+            "Raydium CLMM",
+            "Kipseli",
+            "Meteora DLMM"
+          ],
+          "context_slot": 459346894,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:36.142Z",
+          "status": "OK",
+          "usdc": 9942.839819,
+          "ui_tokens": 70.519366426,
+          "effective_price": 140.99445759249113,
+          "premium_vs_ref": 0.0016600611505417362,
+          "price_impact_vs_jupiter_price": -0.0057160180981277176,
+          "jupiter_price_impact_pct": "0.0059503806560583181035728261",
+          "route": [
+            "Meteora DLMM",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346899,
+          "quote_host": "api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "xstocks",
+      "symbol": "TSLAx",
+      "mint": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB",
+      "ref": 364.87109,
+      "ref_label": "Pyth Equity.US price (on-chain)",
+      "ref_fetched_at": "2026-10-20T19:30:22.151Z",
+      "ref_error": null,
+      "headline_premium": 0.02730277546773685,
+      "headline_fetched_at": "2026-10-20T19:30:21.909Z",
+      "jupiter_price": 374.8330834449384,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 8,
+        "multiplier": 1,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:37.348Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 2.6638445,
+          "effective_price": 375.3972876419776,
+          "premium_vs_ref": 0.028849086514301847,
+          "price_impact_vs_jupiter_price": 0.0015052145126941419,
+          "jupiter_price_impact_pct": "0.0005900999077167620610213887",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346905,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:38.469Z",
+          "status": "OK",
+          "usdc": 1000.217258,
+          "ui_tokens": 2.66785416,
+          "effective_price": 374.91451856573747,
+          "premium_vs_ref": 0.02752596421310738,
+          "price_impact_vs_jupiter_price": 0.00021725702558228477,
+          "jupiter_price_impact_pct": "0.0005065537452198879515647929",
+          "route": [
+            "Hadron",
+            "Whirlpool"
+          ],
+          "context_slot": 459346938,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:45.852Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 26.61951352,
+          "effective_price": 375.6642657081886,
+          "premium_vs_ref": 0.02958079169327621,
+          "price_impact_vs_jupiter_price": 0.0022174730565700518,
+          "jupiter_price_impact_pct": "0.0014899914350278547539629604",
+          "route": [
+            "Whirlpool",
+            "Hadron",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459346943,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:47.048Z",
+          "status": "OK",
+          "usdc": 10000.549505,
+          "ui_tokens": 26.67854157,
+          "effective_price": 374.85368076662826,
+          "premium_vs_ref": 0.02735922642330557,
+          "price_impact_vs_jupiter_price": 0.00005495065030158841,
+          "jupiter_price_impact_pct": "0.0006687426669157441840885131",
+          "route": [
+            "Hadron",
+            "Whirlpool"
+          ],
+          "context_slot": 459346950,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "xstocks",
+      "symbol": "AAPLx",
+      "mint": "XsbEhLAtcf6HdfpFZ5xEMdqW8nfAvcsP5bdudRLJzJp",
+      "ref": 339.86398999999994,
+      "ref_label": "Pyth Equity.US price (on-chain)",
+      "ref_fetched_at": "2026-10-20T19:30:22.151Z",
+      "ref_error": null,
+      "headline_premium": -0.0007341280756810731,
+      "headline_fetched_at": "2026-10-20T19:30:21.909Z",
+      "jupiter_price": 339.61448630302795,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 8,
+        "multiplier": 1.0032690125398187,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:48.442Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 2.945549523446644,
+          "effective_price": 339.49522560730225,
+          "premium_vs_ref": -0.0010850352009864617,
+          "price_impact_vs_jupiter_price": -0.000351164925336267,
+          "jupiter_price_impact_pct": "0.0014821568985253484566708718",
+          "route": [
+            "Hadron"
+          ],
+          "context_slot": 459346956,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:49.565Z",
+          "status": "OK",
+          "usdc": 997.9173,
+          "ui_tokens": 2.9445151530947156,
+          "effective_price": 338.9071708295264,
+          "premium_vs_ref": -0.0028153002337009125,
+          "price_impact_vs_jupiter_price": -0.002082701127390729,
+          "jupiter_price_impact_pct": "0.0002503586427019901973930572",
+          "route": [
+            "Hadron"
+          ],
+          "context_slot": 459346961,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:50.688Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 29.433128896866144,
+          "effective_price": 339.7532092167319,
+          "premium_vs_ref": -0.0003259562252183601,
+          "price_impact_vs_jupiter_price": 0.0004084717210210975,
+          "jupiter_price_impact_pct": "0.0022403579405025490326093051",
+          "route": [
+            "Manifest",
+            "Whirlpool",
+            "Hadron"
+          ],
+          "context_slot": 459346995,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:31:58.079Z",
+          "status": "OK",
+          "usdc": 9977.984144,
+          "ui_tokens": 29.445151500849082,
+          "effective_price": 338.8667959039801,
+          "premium_vs_ref": -0.0029340975371348055,
+          "price_impact_vs_jupiter_price": -0.0022015857073325318,
+          "jupiter_price_impact_pct": "0.0003694615145474094178842157",
+          "route": [
+            "Hadron",
+            "Manifest",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347001,
+          "quote_host": "api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "xstocks",
+      "symbol": "NVDAx",
+      "mint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh",
+      "ref": 227.17,
+      "ref_label": "Pyth Equity.US price (on-chain)",
+      "ref_fetched_at": "2026-10-20T19:30:22.151Z",
+      "ref_error": null,
+      "headline_premium": -0.04867024912908502,
+      "headline_fetched_at": "2026-10-20T19:30:21.909Z",
+      "jupiter_price": 216.11357950534574,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 8,
+        "multiplier": 1.001701196801074,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:31:59.373Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 4.6150216164956275,
+          "effective_price": 216.68370878820292,
+          "premium_vs_ref": -0.04616054589865326,
+          "price_impact_vs_jupiter_price": 0.00263810022564126,
+          "jupiter_price_impact_pct": "0",
+          "route": [
+            "GoonFi V2"
+          ],
+          "context_slot": 459347006,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:32:00.498Z",
+          "status": "OK",
+          "usdc": 1002.481811,
+          "ui_tokens": 4.6271965031988,
+          "effective_price": 216.64993269833695,
+          "premium_vs_ref": -0.046309227898327365,
+          "price_impact_vs_jupiter_price": 0.0024818116206248853,
+          "jupiter_price_impact_pct": "0.0002014679836911051467877816",
+          "route": [
+            "GoonFi V2"
+          ],
+          "context_slot": 459347012,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:01.734Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 46.13947490298896,
+          "effective_price": 216.73415271902434,
+          "premium_vs_ref": -0.04593849223478297,
+          "price_impact_vs_jupiter_price": 0.00287151420609022,
+          "jupiter_price_impact_pct": "0.0001871564754301838571487405",
+          "route": [
+            "GoonFi V2",
+            "Raydium CLMM",
+            "Whirlpool"
+          ],
+          "context_slot": 459347017,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:02.912Z",
+          "status": "OK",
+          "usdc": 10019.914001,
+          "ui_tokens": 46.27196506203903,
+          "effective_price": 216.54394810261078,
+          "premium_vs_ref": -0.04677577099700314,
+          "price_impact_vs_jupiter_price": 0.001991400069584204,
+          "jupiter_price_impact_pct": "0",
+          "route": [
+            "Manifest",
+            "Whirlpool",
+            "GoonFi V2"
+          ],
+          "context_slot": 459347052,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "xstocks",
+      "symbol": "GOOGLx",
+      "mint": "XsCPL9dNWBMvFtTmwcCA5v3xWPSMEBCszbQdiLLq6aN",
+      "ref": 340.38503,
+      "ref_label": "Pyth Equity.US price (on-chain)",
+      "ref_fetched_at": "2026-10-20T19:30:22.151Z",
+      "ref_error": null,
+      "headline_premium": -0.004747099315690839,
+      "headline_fetched_at": "2026-10-20T19:30:21.909Z",
+      "jupiter_price": 338.76918845701556,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 8,
+        "multiplier": 1.0023772500603487,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:32:10.220Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 2.9483310878160336,
+          "effective_price": 339.1749332808978,
+          "premium_vs_ref": -0.0035550820760307245,
+          "price_impact_vs_jupiter_price": 0.0011977028540590684,
+          "jupiter_price_impact_pct": "0.0013664359410389765918314484",
+          "route": [
+            "Hadron"
+          ],
+          "context_slot": 459347058,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:32:11.392Z",
+          "status": "OK",
+          "usdc": 999.741476,
+          "ui_tokens": 2.9518623125114085,
+          "effective_price": 338.6816084756447,
+          "premium_vs_ref": -0.005004396122694654,
+          "price_impact_vs_jupiter_price": -0.00025852404632720205,
+          "jupiter_price_impact_pct": "0.0000881693965118740494660574",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347063,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:12.515Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 29.46266618695995,
+          "effective_price": 339.4125954706013,
+          "premium_vs_ref": -0.0028568663239940673,
+          "price_impact_vs_jupiter_price": 0.0018992489149212144,
+          "jupiter_price_impact_pct": "0.0020656953165390720880948461",
+          "route": [
+            "Whirlpool",
+            "Hadron"
+          ],
+          "context_slot": 459347069,
+          "quote_host": "api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:13.712Z",
+          "status": "OK",
+          "usdc": 9994.794904,
+          "ui_tokens": 29.518623125114086,
+          "effective_price": 338.5928558265494,
+          "premium_vs_ref": -0.005265138051020024,
+          "price_impact_vs_jupiter_price": -0.0005205096463148928,
+          "jupiter_price_impact_pct": "0.0003501996385059085140020141",
+          "route": [
+            "Whirlpool",
+            "Hadron",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347075,
+          "quote_host": "lite-api.jup.ag"
+        }
+      }
+    },
+    {
+      "group": "xstocks",
+      "symbol": "SPYx",
+      "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
+      "ref": 767.91379,
+      "ref_label": "Pyth Equity.US price (on-chain)",
+      "ref_fetched_at": "2026-10-20T19:30:22.151Z",
+      "ref_error": null,
+      "headline_premium": 0.00007675194370326821,
+      "headline_fetched_at": "2026-10-20T19:30:21.909Z",
+      "jupiter_price": 767.972728875979,
+      "jupiter_price_fetched_at": "2026-10-20T19:30:21.909Z",
+      "mint_info": {
+        "ok": true,
+        "decimals": 8,
+        "multiplier": 1.005714560286254,
+        "fetched_at": "2026-10-20T19:30:22.249Z"
+      },
+      "legs": {
+        "buy_1000": {
+          "side": "buy",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:32:14.857Z",
+          "status": "OK",
+          "usdc": 1000,
+          "ui_tokens": 1.301174922550427,
+          "effective_price": 768.5361765502709,
+          "premium_vs_ref": 0.0008104901336267734,
+          "price_impact_vs_jupiter_price": 0.0007336818784131616,
+          "jupiter_price_impact_pct": "0.0000182103682087815871461618",
+          "route": [
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347108,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_1000": {
+          "side": "sell",
+          "usd": 1000,
+          "fetched_at": "2026-10-20T19:32:22.097Z",
+          "status": "OK",
+          "usdc": 1000.477971,
+          "ui_tokens": 1.3021295669253419,
+          "effective_price": 768.3397999804138,
+          "premium_vs_ref": 0.0005547627688959889,
+          "price_impact_vs_jupiter_price": 0.0004779741397484827,
+          "jupiter_price_impact_pct": "0.0002373142214451273784579523",
+          "route": [
+            "Byreal",
+            "Whirlpool",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347115,
+          "quote_host": "api.jup.ag"
+        },
+        "buy_10000": {
+          "side": "buy",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:23.418Z",
+          "status": "OK",
+          "usdc": 10000,
+          "ui_tokens": 13.007889805936317,
+          "effective_price": 768.7641999731865,
+          "premium_vs_ref": 0.0011074289643717705,
+          "price_impact_vs_jupiter_price": 0.0010305979202749338,
+          "jupiter_price_impact_pct": "0.0003148153226707688813029382",
+          "route": [
+            "PancakeSwap",
+            "Byreal",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347121,
+          "quote_host": "lite-api.jup.ag"
+        },
+        "sell_10000": {
+          "side": "sell",
+          "usd": 10000,
+          "fetched_at": "2026-10-20T19:32:24.658Z",
+          "status": "OK",
+          "usdc": 10001.470502,
+          "ui_tokens": 13.021295709482002,
+          "effective_price": 768.0856594568396,
+          "premium_vs_ref": 0.00022381347890587655,
+          "price_impact_vs_jupiter_price": 0.00014705024881012108,
+          "jupiter_price_impact_pct": "0.0005680015194610433180500184",
+          "route": [
+            "Byreal",
+            "Raydium CLMM"
+          ],
+          "context_slot": 459347127,
+          "quote_host": "api.jup.ag"
+        }
+      }
+    }
+  ]
+}
