@@ -5,8 +5,8 @@ export const THRESHOLDS = {
   premiumBps: 100,
   /** Flag reference price as STALE when older than this (seconds) during market hours. */
   staleSeconds: 300,
-  /** Approximate Solana slot duration for Jupiter blockId age estimates. */
-  slotSeconds: 0.4,
+  /** Jupiter blockId age uses the MEASURED slot rate: this many recent ~60 s performance samples (~5 min). */
+  slotRateSamples: 5,
   /** Flag reference as STALE regardless of market hours when older than this (covers long weekends). */
   maxRefAgeSeconds: 96 * 3600,
   /** xStocks quote vs Jupiter / Pyth: MATCH when within this fraction (1%). */

@@ -1,4 +1,4 @@
-import { ENDPOINTS, THRESHOLDS } from './config.js';
+import { ENDPOINTS } from './config.js';
 
 export async function fetchJupiterPrices(mints) {
   const ids = mints.join(',');
@@ -15,15 +15,16 @@ export async function fetchJupiterPrices(mints) {
 }
 
 /**
- * Estimate Jupiter price age from blockId vs current slot.
- * Jupiter v3 does not expose a publish timestamp directly.
+ * Estimate Jupiter price age from blockId vs current slot, at the measured seconds per slot
+ * (fetchSlotSeconds). Jupiter v3 does not expose a publish timestamp directly.
+ * No measured rate -> null (UNKNOWN), never an assumed slot time.
  */
-export function jupiterPriceAgeSeconds(jupiterEntry, currentSlot) {
-  if (!jupiterEntry || jupiterEntry.blockId == null || currentSlot == null) {
+export function jupiterPriceAgeSeconds(jupiterEntry, currentSlot, slotSeconds) {
+  if (!jupiterEntry || jupiterEntry.blockId == null || currentSlot == null || !(slotSeconds > 0)) {
     return null;
   }
   const slotsBehind = Math.max(0, currentSlot - jupiterEntry.blockId);
-  return Math.round(slotsBehind * THRESHOLDS.slotSeconds);
+  return Math.round(slotsBehind * slotSeconds);
 }
 
 export function extractJupiterUsd(jupiterEntry) {

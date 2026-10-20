@@ -1,6 +1,6 @@
 import { STOCKS, THRESHOLDS } from './config.js';
 import { fetchJupiterPrices, jupiterPriceAgeSeconds, jupiterPriceFor } from './jupiter.js';
-import { fetchPythOnChainBatch, fetchPythMarketHours, fetchCurrentSlot } from './pyth.js';
+import { fetchPythOnChainBatch, fetchPythMarketHours, fetchCurrentSlot, fetchSlotSeconds } from './pyth.js';
 import { isUsMarketOpenLocal, marketStatusLabel, formatAgeSeconds } from './market.js';
 
 function bpsDiff(onChain, reference) {
@@ -67,16 +67,17 @@ function computeFlags(row, marketOpen) {
 /**
  * @param {object} [opts]
  * @param {object|null} [opts.issuer] xStocks (Backed) snapshot as produced by fetchBackedSnapshot()
- *   (browser: docs/data/xstocks.json written by the GitHub Action; CLI: fetched live).
+ *   (browser: docs/data/xstocks.json written by the GitHub Action; CLI: fetched from the API on each run).
  */
 export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError = null } = {}) {
   const fetchedAt = new Date();
   const mints = stocks.map((s) => s.mint);
 
-  const [jupiter, pythBatch, marketHoursMap] = await Promise.all([
+  const [jupiter, pythBatch, marketHoursMap, slotRate] = await Promise.all([
     fetchJupiterPrices(mints),
     fetchPythOnChainBatch(stocks),
     fetchPythMarketHours(stocks),
+    fetchSlotSeconds(),
   ]);
   const pythResults = pythBatch.results;
   // Slot comes from the same RPC response; only fall back to a separate getSlot if needed.
@@ -93,7 +94,7 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
     const jp = jupiter.ok ? jupiterPriceFor(jupiter.prices, stock.mint) : { usd: null, entry: null, reason: null };
     const jEntry = jp.entry;
     const onChainUsd = jp.usd;
-    const onChainAgeSec = jupiterPriceAgeSeconds(jEntry, slotInfo.slot);
+    const onChainAgeSec = jupiterPriceAgeSeconds(jEntry, slotInfo.slot, slotRate.slotSeconds);
 
     const pyth = pythResults[i];
     const refUsd = pyth.ok ? pyth.priceUsd : null;
@@ -170,7 +171,14 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
     marketOpen,
     marketLabel,
     slot: slotInfo.slot,
+    slotRate,
   };
+}
+
+/** e.g. "0.218 s/slot (measured over 300 s)"; UNKNOWN with the reason when the RPC gave no samples. */
+export function formatSlotRate(rate) {
+  if (!(rate?.slotSeconds > 0)) return `UNKNOWN${rate?.error ? ` — ${rate.error}` : ''}`;
+  return `${rate.slotSeconds.toFixed(3)} s/slot (measured over ${Math.round(rate.windowSeconds)} s)`;
 }
 
 export function formatTable(result) {
@@ -215,5 +223,6 @@ export function formatTable(result) {
     if (r.issuerErrors.length) lines.push(`${r.symbol}: ${r.issuerErrors.join('; ')}`);
   }
   lines.push(`US market (aggregate): ${result.marketLabel}`);
+  lines.push(`Slot rate (on-chain age): ${formatSlotRate(result.slotRate)}`);
   return lines.join('\n');
 }
