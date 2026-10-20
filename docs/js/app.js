@@ -22,6 +22,15 @@ function cmpCell(c, a, aLabel, b, bLabel, at) {
   return `<span class="${cls}">${c.status}</span> ${pct}<br><span class="sub">${aLabel} $${a.toFixed(2)} · ${bLabel} $${b.toFixed(2)}</span>${fetched(at)}`;
 }
 
+/** Reference cell: the Pyth account it came from, or the xStocks quote with the unused stale Pyth price below. */
+function refCell(r) {
+  if (r.refSource === 'issuer') {
+    return `$${r.refUsd.toFixed(2)}<br><span class="sub">xStocks issuer quote</span>${fetched(r.quoteFetchedAt)}` +
+      `<br><span class="sub">Pyth $${r.pythUsd != null ? r.pythUsd.toFixed(2) : 'UNKNOWN'} published ${escapeHtml(utc(r.refPublishTime))}: older than ${Math.round(THRESHOLDS.maxRefAgeSeconds / 3600)} h, not used</span>`;
+  }
+  return r.refUsd != null ? '$' + r.refUsd.toFixed(2) + `<br><span class="sub">${escapeHtml(r.refProgram ?? '?')} program · shard ${r.refShard ?? '?'} · <a href="https://explorer.solana.com/address/${escapeHtml(r.refAccount)}" rel="noopener">${escapeHtml(String(r.refAccount).slice(0, 4))}…${escapeHtml(String(r.refAccount).slice(-4))}</a><br>published ${escapeHtml(utc(r.refPublishTime))}</span>` : unk(r.errors.find((e) => e.startsWith('Pyth')));
+}
+
 function multCell(r) {
   if (r.multiplier == null) return unk(r.issuerErrors.find((e) => e.includes('multiplier')) || 'multiplier unavailable');
   const chk = r.multiplierCheck;
@@ -93,6 +102,7 @@ function flagClass(flags) {
   if (flags.includes('HALTED')) return 'warn';
   if (flags.includes('STALE') || flags.includes('WIDE') || flags.includes('UNKNOWN')) return 'warn';
   if (flags.includes('AFTER-HOURS')) return 'muted';
+  if (flags.includes('REF: xStocks quote')) return 'muted';
   return '';
 }
 
@@ -104,14 +114,14 @@ function render(result, dh) {
       <td><strong>${r.symbol}</strong><br><span class="sub">${r.underlying}</span></td>
       <td class="num">${r.onChainUsd != null ? '$' + r.onChainUsd.toFixed(2) : unk(r.errors.find((e) => e.startsWith('Jupiter')))}</td>
       <td class="num">${r.onChainAge}</td>
-      <td class="num">${r.refUsd != null ? '$' + r.refUsd.toFixed(2) + `<br><span class="sub">${escapeHtml(r.refProgram ?? '?')} program · shard ${r.refShard ?? '?'} · <a href="https://explorer.solana.com/address/${escapeHtml(r.refAccount)}" rel="noopener">${escapeHtml(String(r.refAccount).slice(0, 4))}…${escapeHtml(String(r.refAccount).slice(-4))}</a><br>published ${escapeHtml(utc(r.refPublishTime))}</span>` : unk(r.errors.find((e) => e.startsWith('Pyth')))}</td>
+      <td class="num">${refCell(r)}</td>
       <td class="num">${r.refAge}</td>
       <td class="num ${r.premiumBps != null && Math.abs(r.premiumBps) > THRESHOLDS.premiumBps ? 'warn' : ''}">${r.premiumBpsLabel}</td>
       <td class="num">${depthCell(findDepth(dh.depth, 'xstocks', r.symbol), dh.depth)}</td>
       <td>${sparkCell(dh.history, 'xstocks', r.symbol)}</td>
       <td class="num">${r.quote != null ? '$' + r.quote.toFixed(2) + fetched(r.quoteFetchedAt) + (r.issuerHost ? `<br><span class="sub">via ${escapeHtml(r.issuerHost)}</span>` : '') : unk(r.issuerErrors.find((e) => e.includes('quote')) || r.issuerErrors[0])}</td>
       <td class="num">${cmpCell(r.quoteVsJupiter, r.quote, 'xStocks', r.onChainUsd, 'Jupiter', r.quoteFetchedAt)}</td>
-      <td class="num">${cmpCell(r.quoteVsPyth, r.quote, 'xStocks', r.refUsd, 'Pyth', r.quoteFetchedAt)}</td>
+      <td class="num">${cmpCell(r.quoteVsPyth, r.quote, 'xStocks', r.pythUsd, 'Pyth', r.quoteFetchedAt)}</td>
       <td class="num">${multCell(r)}</td>
       <td><span class="pill ${r.market === 'OPEN' ? 'open' : 'closed'}">${r.market}</span></td>
       <td><span class="flag ${flagClass(r.flags)}">${r.flags}</span>${r.halted === true ? `<br><span class="sub">issuer isTradingHalted=true${fetched(r.haltedFetchedAt)}</span>` : r.halted === false ? '<br><span class="sub">not halted</span>' : `<br><span class="sub err">halt status UNKNOWN</span>`}${r.errors.length ? `<br><span class="sub err">${escapeHtml(r.errors.join('; '))}</span>` : ''}</td>

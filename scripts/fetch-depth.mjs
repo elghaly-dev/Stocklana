@@ -7,7 +7,8 @@
  *   - sell: quote token -> USDC, ExactIn, token amount worth ~$1,000 / ~$10,000 at the Jupiter price
  * Effective price per token is expressed per SCALED (UI) token: Jupiter quote amounts are RAW units,
  * so UI tokens = raw / 10^decimals × effective Token-2022 ScaledUiAmount multiplier (read from the mint).
- * Premium vs reference: PreStocks -> markPrice (as published by the PreStocks API); xStocks -> Pyth Equity.US price.
+ * Premium vs reference: PreStocks -> markPrice (as published by the PreStocks API); xStocks -> Pyth Equity.US price,
+ * or the xStocks issuer quote from docs/data/xstocks.json when Pyth is stale (pickReference in docs/js/peg-watch.js).
  * Price impact % = effective price / Jupiter Price API usdPrice − 1 (our own computation; Jupiter's
  * priceImpactPct field is stored verbatim as jupiter_price_impact_pct).
  *
@@ -18,6 +19,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { STOCKS } from '../docs/js/config.js';
 import { fetchPythOnChainBatch } from '../docs/js/pyth.js';
+import { pickReference } from '../docs/js/peg-watch.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = resolve(ROOT, 'docs/data');
@@ -201,6 +203,13 @@ async function main() {
   }
   const pythFetchedAt = now();
   const pyth = await fetchPythOnChainBatch(STOCKS);
+  // xStocks issuer snapshot written earlier in the same run (fetch-xstocks.mjs): the reference when Pyth is stale.
+  let issuer = null;
+  try {
+    issuer = JSON.parse(await readFile(resolve(DATA, 'xstocks.json'), 'utf8'));
+  } catch (e) {
+    console.warn(`xstocks.json not readable, xStocks reference stays Pyth: ${e.message || e}`);
+  }
   const mi = await mintInfo(mints);
 
   const out = [];
@@ -209,10 +218,12 @@ async function main() {
     const jupPrice = isNum(jp) ? jp : null;
     if (it.group === 'xstocks') {
       const p = pyth.results[STOCKS.indexOf(it.stock)];
-      it.ref = p?.ok ? p.priceUsd : null;
-      it.ref_label = 'Pyth Equity.US price (on-chain)';
-      it.ref_fetched_at = pythFetchedAt;
-      it.ref_error = p?.ok ? null : p?.error;
+      const iss = issuer?.assets?.find((a) => a.symbol === it.symbol) || null;
+      const ref = pickReference(p, iss?.quote?.ok ? iss.quote.quote : null, iss?.quote?.fetched_at ?? null, Math.floor(Date.now() / 1000));
+      it.ref = ref.usd;
+      it.ref_label = ref.source === 'issuer' ? 'xStocks issuer quote (Pyth Equity.US price is stale)' : 'Pyth Equity.US price (on-chain)';
+      it.ref_fetched_at = ref.source === 'issuer' ? iss.quote.fetched_at : pythFetchedAt;
+      it.ref_error = ref.usd != null ? null : p?.error;
       it.headline_premium = jupPrice != null && it.ref != null ? jupPrice / it.ref - 1 : null;
       it.headline_fetched_at = priceFetchedAt;
       delete it.stock;

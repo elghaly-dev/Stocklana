@@ -28,12 +28,27 @@ export function compare(a, b, tol = THRESHOLDS.referenceMatch) {
   return { status: Math.abs(diff) <= tol ? 'MATCH' : 'DIFF', diff };
 }
 
+/**
+ * Reference price for the premium. Pyth while it is at most maxRefAgeSeconds old. Otherwise the
+ * xStocks issuer quote (price-data: USD per share, the same unit as Jupiter's per-UI-token price),
+ * if that snapshot is at most issuerRefMaxAgeSeconds old. Otherwise Pyth as it is (flagged REF STALE).
+ */
+export function pickReference(pyth, quote, quoteFetchedAt, nowSec) {
+  const pythUsd = pyth?.ok ? pyth.priceUsd : null;
+  const pythAgeSec = pyth?.ok ? Math.max(0, nowSec - pyth.publishTime) : null;
+  const pythFresh = pythUsd != null && pythAgeSec <= THRESHOLDS.maxRefAgeSeconds;
+  const quoteAgeSec = quoteFetchedAt ? Math.max(0, nowSec - Math.floor(Date.parse(quoteFetchedAt) / 1000)) : null;
+  const quoteUsable = Number.isFinite(quote) && quote > 0 && quoteAgeSec != null && quoteAgeSec <= THRESHOLDS.issuerRefMaxAgeSeconds;
+  if (!pythFresh && quoteUsable) return { source: 'issuer', usd: quote, ageSec: quoteAgeSec, pythUsd, pythAgeSec };
+  return { source: 'pyth', usd: pythUsd, ageSec: pythAgeSec, pythUsd, pythAgeSec };
+}
+
 function fmtCmp(c) {
   if (!c || c.status === 'UNKNOWN') return 'UNKNOWN';
   return `${c.status} ${c.diff >= 0 ? '+' : ''}${(c.diff * 100).toFixed(2)}%`;
 }
 
-function computeFlags(row, marketOpen) {
+export function computeFlags(row, marketOpen) {
   const flags = [];
   if (row.halted === true) {
     // Issuer reports trading halted: premium flags are suppressed for this row.
@@ -47,7 +62,10 @@ function computeFlags(row, marketOpen) {
     flags.push(`WIDE (${absBps} bps)`);
   }
 
-  if (row.refAgeSec != null && row.refAgeSec > THRESHOLDS.maxRefAgeSeconds) {
+  if (row.refSource === 'issuer') {
+    // Pyth is past maxRefAgeSeconds; the premium uses the issuer quote instead (see pickReference).
+    flags.push(`REF: xStocks quote (Pyth ${row.pythAgeSec != null ? `${Math.round(row.pythAgeSec / 3600)}h old` : 'UNKNOWN'})`);
+  } else if (row.refAgeSec != null && row.refAgeSec > THRESHOLDS.maxRefAgeSeconds) {
     flags.push(`REF STALE (${Math.round(row.refAgeSec / 3600)}h old)`);
   } else if (row.refAgeSec != null && marketOpen && row.refAgeSec > THRESHOLDS.staleSeconds) {
     flags.push('STALE');
@@ -96,16 +114,17 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
     const onChainAgeSec = jupiterPriceAgeSeconds(jEntry, slotInfo.slot);
 
     const pyth = pythResults[i];
-    const refUsd = pyth.ok ? pyth.priceUsd : null;
-    const refAgeSec = pyth.ok ? Math.max(0, nowSec - pyth.publishTime) : null;
+    const iss = issuer?.assets?.find((a) => a.symbol === stock.symbol) || null;
+    const quote = iss?.quote?.ok ? iss.quote.quote : null;
+    const ref = pickReference(pyth, quote, iss?.quote?.fetched_at ?? null, nowSec);
+    const refUsd = ref.usd;
+    const refAgeSec = ref.ageSec;
 
     // Multiplier handling (verified against Jupiter scaledUiConfig and the Token-2022 mint):
     // Jupiter usdPrice is per SCALED (UI) unit = 1 underlying share, so premium = usdPrice / Pyth - 1.
     // Equivalent raw-token view: raw price = usdPrice x M, fair value per raw token = underlying x M.
-    const iss = issuer?.assets?.find((a) => a.symbol === stock.symbol) || null;
     const mult = iss?.multiplier?.ok ? iss.multiplier.currentMultiplier : null;
     const premiumBps = bpsDiff(onChainUsd, refUsd);
-    const quote = iss?.quote?.ok ? iss.quote.quote : null;
     const halted = iss?.asset?.ok ? iss.asset.isTradingHalted : null;
     const issuerErrors = [];
     if (!issuer) issuerErrors.push(`xStocks snapshot: ${issuerError || 'not loaded'}`);
@@ -127,6 +146,9 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
       refUsd,
       refAgeSec,
       refAge: formatAgeSeconds(refAgeSec),
+      refSource: ref.source,
+      pythUsd: ref.pythUsd,
+      pythAgeSec: ref.pythAgeSec,
       premiumBps,
       premiumBpsLabel: formatBps(premiumBps),
       market: marketStatusLabel(stockMarketOpen),
@@ -137,7 +159,7 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
       quote,
       quoteFetchedAt: iss?.quote?.fetched_at ?? null,
       quoteVsJupiter: compare(quote, onChainUsd),
-      quoteVsPyth: compare(quote, refUsd),
+      quoteVsPyth: compare(quote, ref.pythUsd),
       multiplier: mult,
       multiplierFetchedAt: iss?.multiplier?.fetched_at ?? null,
       multiplierReason: iss?.multiplier?.reason ?? null,
@@ -178,7 +200,7 @@ export function formatTable(result) {
     'Symbol',
     'On-chain $',
     'On-chain age',
-    'Ref $ (Pyth)',
+    'Ref $',
     'Ref age',
     'Premium bps',
     'xStocks quote',
@@ -196,7 +218,7 @@ export function formatTable(result) {
         r.symbol,
         formatUsd(r.onChainUsd),
         r.onChainAge,
-        formatUsd(r.refUsd),
+        `${formatUsd(r.refUsd)}${r.refSource === 'issuer' ? ' (xStocks quote)' : ''}`,
         r.refAge,
         r.premiumBpsLabel,
         formatUsd(r.quote),
