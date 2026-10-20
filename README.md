@@ -106,7 +106,7 @@ non-zero `newMultiplier` + `activationDateTime`; otherwise "none announced".
 and Tron, while `circulatingSupply` is aggregated across chains; doing the exclusion correctly would need per-chain balances for every
 wallet, so it is skipped rather than approximated.
 The API sends no CORS headers, so `scripts/fetch-xstocks.mjs` runs in the scheduled GitHub Action (same workflow as PreStocks) and writes
-[`xstocks.json`](https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/xstocks.json) to the `data` branch with `fetched_at`; the CLI calls the API live.
+[`xstocks.json`](https://raw.githubusercontent.com/elghaly-dev/Stocklana/data/xstocks.json) to the `data` branch with `fetched_at`; the CLI calls the API directly.
 
 ## Depth-adjusted premium
 

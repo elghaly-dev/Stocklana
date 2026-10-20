@@ -67,7 +67,7 @@ function computeFlags(row, marketOpen) {
 /**
  * @param {object} [opts]
  * @param {object|null} [opts.issuer] xStocks (Backed) snapshot as produced by fetchBackedSnapshot()
- *   (browser: xstocks.json on the data branch, written by the GitHub Action; CLI: fetched live).
+ *   (browser: xstocks.json on the data branch, written by the GitHub Action; CLI: fetched from the API on each run).
  */
 export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError = null } = {}) {
   const fetchedAt = new Date();
