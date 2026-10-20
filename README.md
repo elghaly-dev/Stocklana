@@ -18,7 +18,7 @@ Built for **[Stocklana](https://hackathons.solana.com)** — submitted under two
 |--------|--------|
 | On-chain $ | [Jupiter Price API v3](https://dev.jup.ag/docs/price) (`api.jup.ag/price/v3`, keyless) |
 | On-chain age | Estimated from Jupiter `blockId` vs current Solana slot, at the slot time measured on each refresh from `getRecentPerformanceSamples` (sum of seconds / sum of slots over the last ~5 min, shown under the table); UNKNOWN if that call fails |
-| Reference $ | [Pyth Network](https://docs.pyth.network/) `Equity.US.*/USD` push-oracle price-update accounts on Solana (public RPC). Both shard 0 and shard 1 PDAs are read and the freshest valid account (owned by the Pyth receiver program, matching feed id) is used — the shard 0 accounts have stopped updating (TSLA on 2026-09-11, NVDA/SPY on 2026-08-26, AAPL/GOOGL on 2026-08-14 — exact times in the status section below). |
+| Reference $ | [Pyth Network](https://docs.pyth.network/) `Equity.US.*/USD` push-oracle price-update accounts on Solana (public RPC). Both shard 0 and shard 1 PDAs are read and the freshest valid account (owned by the Pyth receiver program, matching feed id) is used. As of 2026-10-20, **both** have stopped updating: shard 0 last published on 2026-08-14 to 2026-09-11, shard 1 on 2026-09-28 (TSLA 2026-10-14), so every Reference $ is older than the 96 h limit and flagged **REF STALE** — exact times in the status section below. |
 | Ref age | `publishTime` from Pyth on-chain account |
 | Premium / discount | `(on_chain − reference) / reference × 10 000` basis points |
 | US market | Pyth Hermes `market_hours` metadata (no key) with local NYSE schedule fallback |
@@ -47,17 +47,19 @@ own table derives the "upgraded account address" with shard 0 and the upgraded p
 | Equity.US.GOOGL/USD | `HShKFQqhYkUiXpVyyLmrAALXwWqHB7ikLmPbrwJzpRNh` | `7aUtbtC3o3GVwRWvaDp5fxKjBq53QL3UrVmDzDgeNo8M` | `3pPk4HK7RWig3k9oibQiKPU21gr3PA7BPr4EHpoA1dqA` | `HLfcrataVrKFLr71W4VSpnLLfUPswn2eok3ttUF3mQ6x` |
 | Equity.US.SPY/USD | `9owhtgrdLiUMAH9JKxYFt5pUY4Luy4EzzLhdcWPVuDyy` | `CRDaGwcVnKdRNRtx6fjHtvrBgKM5U55AhbqBWhtPMDA` | `2Gejay6wFavogtNP8HifRscSEi85erznugWAkAty5zjw` | `FbCd3rSihn7PqHriCUCd5JFnzSTzRXJzxZhCaU26X9Q9` |
 
-**Status checked on-chain 2026-09-25 ~10:15 UTC:**
-- The upgraded program is live (e.g. SOL/USD's upgraded shard-0 account `7AviUf9n…` exists, owned by `rec2HH…`, publishing every few seconds).
-- These five equity feeds are **not** in Pyth's sponsored Solana feed list (the docs' `solana_mainnet.json` lists 46 sponsored feeds as of 2026-09-25, none of them these five feed ids; the only stock-index entries are `INDEX.GLXY/USD` and `INDEX.FORD/USD`). Their **upgraded** PDAs (shard 0 and 1) **do not exist** yet.
-- Their **current shard 0** accounts are stale (last publish: TSLA 2026-09-11, AAPL/GOOGL 2026-08-14, NVDA/SPY 2026-08-26 15:54 UTC — right before the 16:00 UTC upgrade).
-- Their **current shard 1** accounts are updated continuously (publish time within seconds, verification level Full, owner `rec5EK…`, feed id matches).
+**Status, re-checked on-chain 2026-10-20 ~18:40 UTC** (slot ~459 333 636, with the same account parser the page uses; each line says what changed since the 2026-09-25 check):
+- **Upgraded program** — as of 2026-10-20: running on mainnet. SOL/USD's upgraded shard-0 account `7AviUf9n…` exists, is owned by `rec2HH…`, and had published 10 s before the read. Unchanged since 2026-09-25.
+- **Upgraded accounts for these five feeds** — as of 2026-10-20: shard 0 and shard 1 PDAs **do not exist**. Unchanged since 2026-09-25.
+- **Sponsored feed list** — as of 2026-10-20: the [Pyth Solana push-feeds page](https://docs.pyth.network/price-feeds/core/push-feeds/solana) lists 64 sponsored feeds (46 on 2026-09-25); none of them is one of these five feed ids. The only equity entry is `Equity.US.GLXY/USD`; `INDEX.FORD/USD`, listed on 2026-09-25, is no longer there.
+- **Current shard 0** — as of 2026-10-20: stopped. Last publish: TSLA 2026-09-11 23:59:59, AAPL 2026-08-14 20:00:19, GOOGL 2026-08-14 20:00:20, NVDA and SPY 2026-08-26 15:54:46 UTC (right before the 16:00 UTC upgrade). Unchanged since 2026-09-25.
+- **Current shard 1** — as of 2026-10-20: **stopped** (on 2026-09-25 it was updating within seconds). Last publish: TSLA 2026-10-14 17:59:44, AAPL 2026-09-28 11:53:02, GOOGL 11:53:03, SPY 11:53:09, NVDA 11:53:13 UTC (all 2026-09-28). Still verification level Full, owner `rec5EK…`, feed id matches.
 
 Peg Watch reads all four candidates for each feed in one `getMultipleAccounts` call and uses the freshest valid one (owned by either
-receiver, matching feed id). Right now that is **current program, shard 1**; if the upgraded accounts come into existence and are fresher,
+receiver, matching feed id). As of 2026-10-20 that is **current program, shard 1**, but it is past the 96 h reference-age limit for all five
+feeds, so every row is flagged **REF STALE** and the premium compares against an old reference price. If the upgraded accounts come into existence and are fresher,
 they are picked up automatically. The page shows which program/shard/account and the publish time for every Pyth price.
 
-**Hermes:** Pyth's Hermes price-update endpoints (`/v2/updates/price/latest`) have required an API key since the Aug 26 2026 upgrade. Peg Watch
+**Hermes:** Pyth's Hermes price-update endpoints (`/v2/updates/price/latest`) have required an API key since the Aug 26 2026 upgrade (as of 2026-10-20: a keyless request returns HTTP 401 `unauthorized`). Peg Watch
 uses no key; prices are on-chain reads only. The keyless Hermes metadata endpoint `/v2/price_feeds` is used only for market-hours metadata,
 with a local NYSE-schedule fallback if it fails.
 
@@ -269,7 +271,7 @@ node scripts/fetch-prestocks.mjs   # refresh docs/data/prestocks.json locally
 - **Proof of reserves is shown as published by Backed/xStocks** — not audited or independently verified here; no collateral ratio is derived.
 - **Not all xStocks** — only five liquid names with verified mints and Pyth equity feeds.
 - **Not Hermes price-update API** — Pyth’s Hermes `/v2/updates/price/latest` requires an API key since the Aug 26 2026 upgrade. Peg Watch reads Pyth prices from **on-chain push accounts** via public Solana RPC (keyless). Hermes is used only for **market-hours metadata** (no key).
-- **Pyth equity feeds are not Pyth-sponsored on Solana** — the shard-1 accounts used are kept fresh by whoever pushes updates; if they stop, the age column and REF STALE flag show it.
+- **Pyth equity feeds are not Pyth-sponsored on Solana** — the shard-1 accounts used are kept fresh by whoever pushes updates; if they stop, the age column and REF STALE flag show it. As of 2026-10-20 they have stopped (see the status section above).
 - **Jupiter omissions** — Jupiter Price API v3 leaves tokens without a reliable price out of the reply; that shows as UNKNOWN (“Jupiter omitted: no reliable price”), covered by `npm test`.
 - **Not holiday-perfect** — US market schedule uses Pyth metadata when available; local fallback is Mon–Fri 09:30–16:00 ET only (no holiday calendar).
 - **Not latency-critical** — browser RPC + Jupiter fetches are fine for a dashboard, not for HFT or liquidation bots.
