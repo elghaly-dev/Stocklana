@@ -1,5 +1,5 @@
 // The premium's reference is Pyth while it is fresh, and the xStocks issuer quote when Pyth is
-// past the 96 h limit and the quote snapshot is at most 2 h old. Otherwise Pyth stays, flagged REF STALE.
+// past the 96 h limit and the quote snapshot is at most 8 h old. Otherwise Pyth stays, flagged REF STALE.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pickReference, computeFlags, runPegWatch } from '../docs/js/peg-watch.js';
@@ -15,9 +15,15 @@ test('fresh Pyth stays the reference even when a quote is there', () => {
   assert.deepEqual(r, { source: 'pyth', usd: 227.17, ageSec: H, pythUsd: 227.17, pythAgeSec: H });
 });
 
-test('stale Pyth + quote at most 2 h old -> the quote is the reference', () => {
+test('stale Pyth + quote at most 8 h old -> the quote is the reference', () => {
   const r = pickReference(pyth(534 * H), 216.34, iso(NOW - 600), NOW);
   assert.deepEqual(r, { source: 'issuer', usd: 216.34, ageSec: 600, pythUsd: 227.17, pythAgeSec: 534 * H });
+});
+
+test('a quote from one missed schedule run (6 h 15 m, seen Oct 19) is still used', () => {
+  const r = pickReference(pyth(534 * H), 216.34, iso(NOW - (6 * H + 15 * 60)), NOW);
+  assert.equal(r.source, 'issuer');
+  assert.equal(r.ageSec, 6 * H + 15 * 60);
 });
 
 test('Pyth unreadable + fresh quote -> the quote is the reference', () => {
@@ -29,7 +35,7 @@ test('Pyth unreadable + fresh quote -> the quote is the reference', () => {
 test('stale Pyth + no usable quote -> Pyth stays (and is flagged REF STALE)', () => {
   const stale = pyth(534 * H);
   for (const [quote, at] of [
-    [216.34, iso(NOW - 3 * H)], // quote older than 2 h
+    [216.34, iso(NOW - 9 * H)], // quote older than 8 h
     [216.34, null], // no fetch time: never treated as fresh
     [216.34, 'not a date'],
     [null, iso(NOW - 60)],
@@ -40,13 +46,13 @@ test('stale Pyth + no usable quote -> Pyth stays (and is flagged REF STALE)', ()
     assert.equal(r.source, 'pyth', `quote=${quote} at=${at}`);
     assert.equal(r.usd, 227.17);
   }
-  assert.equal(THRESHOLDS.issuerRefMaxAgeSeconds, 2 * H);
+  assert.equal(THRESHOLDS.issuerRefMaxAgeSeconds, 8 * H);
 });
 
 test('flags: issuer reference says so and drops REF STALE; stale Pyth keeps REF STALE', () => {
   const base = { halted: false, premiumBps: 10, errors: [] };
   const issuerFlags = computeFlags({ ...base, refSource: 'issuer', refAgeSec: 600, pythAgeSec: 534 * H }, true);
-  assert.equal(issuerFlags, 'REF: xStocks quote (Pyth 534h old)');
+  assert.equal(issuerFlags, 'REF: xStocks quote 0.2h old (Pyth 534h old)');
   assert.ok(!issuerFlags.includes('STALE'));
   const pythFlags = computeFlags({ ...base, refSource: 'pyth', refAgeSec: 534 * H, pythAgeSec: 534 * H }, true);
   assert.equal(pythFlags, 'REF STALE (534h old)');
@@ -72,7 +78,7 @@ test('runPegWatch: Pyth unreadable, fresh issuer quote -> premium vs the quote, 
     assert.equal(row.refUsd, 216.34);
     assert.equal(row.premiumBps, Math.round((216.11 / 216.34 - 1) * 10000)); // -11, not the -490 a stale Pyth gives
     assert.equal(row.quoteVsPyth.status, 'UNKNOWN'); // compared with Pyth itself, not with the quote
-    assert.match(row.flags, /^REF: xStocks quote \(Pyth UNKNOWN\)/);
+    assert.match(row.flags, /^REF: xStocks quote 0\.1h old \(Pyth UNKNOWN\)/);
   } finally {
     globalThis.fetch = realFetch;
   }

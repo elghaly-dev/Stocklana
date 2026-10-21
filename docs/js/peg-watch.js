@@ -64,7 +64,8 @@ export function computeFlags(row, marketOpen) {
 
   if (row.refSource === 'issuer') {
     // Pyth is past maxRefAgeSeconds; the premium uses the issuer quote instead (see pickReference).
-    flags.push(`REF: xStocks quote (Pyth ${row.pythAgeSec != null ? `${Math.round(row.pythAgeSec / 3600)}h old` : 'UNKNOWN'})`);
+    const quoteAge = row.refAgeSec != null ? ` ${(row.refAgeSec / 3600).toFixed(1)}h old` : '';
+    flags.push(`REF: xStocks quote${quoteAge} (Pyth ${row.pythAgeSec != null ? `${Math.round(row.pythAgeSec / 3600)}h old` : 'UNKNOWN'})`);
   } else if (row.refAgeSec != null && row.refAgeSec > THRESHOLDS.maxRefAgeSeconds) {
     flags.push(`REF STALE (${Math.round(row.refAgeSec / 3600)}h old)`);
   } else if (row.refAgeSec != null && marketOpen && row.refAgeSec > THRESHOLDS.staleSeconds) {

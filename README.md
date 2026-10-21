@@ -201,8 +201,11 @@ The Pyth `Equity.US` push accounts on Solana for these five stocks stopped updat
 | Pyth price age | xStocks issuer quote | Reference used | Flag |
 |----------------|----------------------|----------------|------|
 | 96 h or less | any | Pyth | as before |
-| over 96 h, or unreadable | snapshot 2 h old or less | xStocks issuer quote (`price-data`, USD per share) | `REF: xStocks quote (Pyth Nh old)` |
-| over 96 h | missing, or snapshot older than 2 h | Pyth | `REF STALE (Nh old)` |
+| over 96 h, or unreadable | snapshot 8 h old or less | xStocks issuer quote (`price-data`, USD per share) | `REF: xStocks quote Xh old (Pyth Nh old)` |
+| over 96 h | missing, or snapshot older than 8 h | Pyth | `REF STALE (Nh old)` |
+
+The limit is 8 h because GitHub runs the snapshot schedule every 4 to 6 hours in practice, not every 30 minutes.
+The flag says how old the quote is.
 
 The issuer quote is the issuer's indicative price, in the same unit as Jupiter's per-UI-token price (checked
 2026-10-20: AAPLx quote 339.28, Jupiter 339.61). The depth-adjusted premiums and the history use the same

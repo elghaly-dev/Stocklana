@@ -11,8 +11,12 @@ export const THRESHOLDS = {
   maxRefAgeSeconds: 96 * 3600,
   /** xStocks quote vs Jupiter / Pyth: MATCH when within this fraction (1%). */
   referenceMatch: 0.01,
-  /** When Pyth is older than maxRefAgeSeconds, the xStocks issuer quote becomes the reference if its snapshot is at most this old. */
-  issuerRefMaxAgeSeconds: 2 * 3600,
+  /**
+   * When Pyth is older than maxRefAgeSeconds, the xStocks issuer quote becomes the reference if its snapshot is at most this old.
+   * GitHub runs the 30-minute snapshot schedule only every 4-6 h in practice (Oct 19-20: gaps up to 6 h 15 m), so 2 h left the
+   * page on REF STALE most of the day. The flag shows the quote's age.
+   */
+  issuerRefMaxAgeSeconds: 8 * 3600,
 };
 
 /** Pyth Solana programs (docs.pyth.network/price-feeds/core/upgrade/contracts). */
