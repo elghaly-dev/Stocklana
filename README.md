@@ -193,6 +193,22 @@ Every sub-object has `ok`; when `ok` is `false` it carries `error` instead of va
 | `points[].source` | `action` (scheduled run) or `git:<sha>` (seeded from a real past snapshot) |
 | `points[].prestocks.{SYMBOL}` / `points[].xstocks.{SYMBOL}` | `{p, b10k, s10k}` — headline premium and $10k buy / sell premium vs reference (fractions; `null` = not available) |
 
+## Reference when Pyth is stale
+
+The Pyth `Equity.US` push accounts on Solana for these five stocks stopped updating on 2026-09-28
+(TSLA on 2026-10-14; see "Pyth accounts" below). The premium's reference is therefore chosen per row:
+
+| Pyth price age | xStocks issuer quote | Reference used | Flag |
+|----------------|----------------------|----------------|------|
+| 96 h or less | any | Pyth | as before |
+| over 96 h, or unreadable | snapshot 2 h old or less | xStocks issuer quote (`price-data`, USD per share) | `REF: xStocks quote (Pyth Nh old)` |
+| over 96 h | missing, or snapshot older than 2 h | Pyth | `REF STALE (Nh old)` |
+
+The issuer quote is the issuer's indicative price, in the same unit as Jupiter's per-UI-token price (checked
+2026-10-20: AAPLx quote 339.28, Jupiter 339.61). The depth-adjusted premiums and the history use the same
+choice (`scripts/fetch-depth.mjs`). The stale Pyth price stays visible under the reference, and "Quote vs
+Pyth" still compares with Pyth itself.
+
 ## Mint verification
 
 All five mints were verified against the official xStocks / Backed public API (`GET https://api.backed.fi/api/v2/public/assets/{symbol}` → Solana deployment address):

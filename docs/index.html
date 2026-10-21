@@ -44,10 +44,10 @@
           <th>Token</th>
           <th>On-chain (Jupiter)</th>
           <th>On-chain age</th>
-          <th>Reference (Pyth)</th>
+          <th>Reference<br><span class="sub">Pyth; xStocks quote when Pyth is stale</span></th>
           <th>Ref age</th>
-          <th>Premium / discount<br><span class="sub">Jupiter vs Pyth, bps</span></th>
-          <th>Depth-adjusted<br><span class="sub">Jupiter quotes vs Pyth</span></th>
+          <th>Premium / discount<br><span class="sub">Jupiter vs reference, bps</span></th>
+          <th>Depth-adjusted<br><span class="sub">Jupiter quotes vs reference</span></th>
           <th>History</th>
           <th>xStocks quote<br><span class="sub">issuer price-data</span></th>
           <th>Quote vs Jupiter</th>
@@ -94,6 +94,8 @@
       On-chain prices from <a href="https://dev.jup.ag/docs/price">Jupiter Price API</a>.
       Reference from <a href="https://docs.pyth.network/price-feeds/core/fetch-price-updates">Pyth Network</a>
       (on-chain push oracle accounts via public Solana RPC).
+      When the Pyth price is more than 96 h old, the reference is the xStocks issuer quote instead (if its snapshot is at most
+      2 h old); the row then shows "REF: xStocks quote" and the stale Pyth price under it.
       Mint addresses verified via <a href="https://docs.xstocks.fi/developers/quickstart">xStocks / Backed public API</a>.
     </p>
     <p>
