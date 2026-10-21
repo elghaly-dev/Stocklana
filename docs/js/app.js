@@ -1,4 +1,4 @@
-import { runPegWatch } from './peg-watch.js';
+import { runPegWatch, formatSlotRate } from './peg-watch.js';
 import { THRESHOLDS } from './config.js';
 import { fetchSnapshot } from './data-source.js';
 import { loadDepthAndHistory, findDepth, depthCell, sparkCell, wireCharts, historySummary, labelCells } from './depth.js';
@@ -10,6 +10,7 @@ const refreshBtn = document.getElementById('refresh');
 const issuerMetaEl = document.getElementById('issuer-meta');
 const porBody = document.getElementById('por-rows');
 const xDepthMetaEl = document.getElementById('x-depth-meta');
+const slotRateEl = document.getElementById('slot-rate');
 wireCharts(tbody, async () => (await loadDepthAndHistory()).history);
 
 const utc = (iso) => (iso ? new Date(iso).toISOString().replace('T', ' ').slice(0, 19) + ' UTC' : 'UNKNOWN');
@@ -131,7 +132,8 @@ function render(result, dh) {
   issuerMetaEl.innerHTML = result.issuerFetchedAt
     ? `xStocks issuer data (quote, multiplier, halt, PoR) snapshot fetched ${escapeHtml(utc(result.issuerFetchedAt))} — <strong>data age ${Math.max(0, Math.round((Date.now() - new Date(result.issuerFetchedAt)) / 60000))} min</strong>`
     : unk('xStocks issuer snapshot not loaded');
-  metaEl.textContent = `Jupiter + Pyth prices fetched live ${new Date(result.fetchedAt).toLocaleString()} (${result.fetchedAt}) · US market ${result.marketLabel} · slot ${result.slot ?? 'UNKNOWN'}`;
+  metaEl.textContent = `Jupiter + Pyth prices fetched ${new Date(result.fetchedAt).toLocaleString()} (${result.fetchedAt}) · US market ${result.marketLabel} · slot ${result.slot ?? 'UNKNOWN'}`;
+  slotRateEl.textContent = `Slot time used for on-chain age: ${formatSlotRate(result.slotRate)}`;
 }
 
 async function refresh() {

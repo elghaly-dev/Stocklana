@@ -1,4 +1,4 @@
-import { ENDPOINTS, PYTH_PROGRAMS } from './config.js';
+import { ENDPOINTS, PYTH_PROGRAMS, THRESHOLDS } from './config.js';
 
 const PYTH_PUSH_ORACLE = 'pythWSnswVUd12oZpeFP8e9CVaEqJg25g1Vtc2biRsT';
 /** Price update accounts are owned by the Pyth Solana Receiver program. */
@@ -114,6 +114,40 @@ export async function fetchCurrentSlot(rpcUrls = ENDPOINTS.solanaRpc) {
     }
   }
   return { slot: null, rpc: null };
+}
+
+/**
+ * Seconds per slot from getRecentPerformanceSamples (each sample: slots produced in a ~60 s window).
+ * @returns {{ slotSeconds: number|null, windowSeconds: number|null }}
+ */
+export function slotSecondsFromSamples(samples) {
+  let seconds = 0;
+  let slots = 0;
+  for (const s of Array.isArray(samples) ? samples : []) {
+    if (s?.numSlots > 0 && s?.samplePeriodSecs > 0) {
+      seconds += s.samplePeriodSecs;
+      slots += s.numSlots;
+    }
+  }
+  return slots > 0 ? { slotSeconds: seconds / slots, windowSeconds: seconds } : { slotSeconds: null, windowSeconds: null };
+}
+
+/**
+ * Current Solana slot rate, measured over the last THRESHOLDS.slotRateSamples performance samples.
+ * @returns {Promise<{ slotSeconds: number|null, windowSeconds: number|null, rpc: string|null, error?: string }>}
+ */
+export async function fetchSlotSeconds(rpcUrls = ENDPOINTS.solanaRpc, samples = THRESHOLDS.slotRateSamples) {
+  const errs = [];
+  for (const url of rpcUrls) {
+    try {
+      const rate = slotSecondsFromSamples(await rpcCall(url, 'getRecentPerformanceSamples', [samples]));
+      if (rate.slotSeconds == null) throw new Error('no usable performance samples');
+      return { ...rate, rpc: url };
+    } catch (e) {
+      errs.push(`${new URL(url).host}: ${e.message || e}`);
+    }
+  }
+  return { slotSeconds: null, windowSeconds: null, rpc: null, error: `slot rate: ${errs.join('; ')}` };
 }
 
 /**
