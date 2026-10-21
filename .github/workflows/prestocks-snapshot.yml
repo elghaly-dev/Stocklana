@@ -1,5 +1,8 @@
 name: Data snapshots (PreStocks + xStocks)
 
+# main is protected, so snapshots go to the `data` branch. The page reads them from there
+# (docs/js/data-source.js) and falls back to the copies bundled in docs/data/.
+
 on:
   schedule:
     - cron: '13,43 * * * *' # ~every 30 minutes (GitHub may delay scheduled runs under load)
@@ -21,6 +24,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Start from the latest snapshots on the data branch
+        id: seed
+        run: |
+          if git ls-remote --exit-code --heads origin data >/dev/null; then
+            git fetch --depth=1 origin data
+            for f in prestocks.json xstocks.json depth.json history.json; do
+              if git show "FETCH_HEAD:$f" > "$RUNNER_TEMP/$f"; then
+                mv "$RUNNER_TEMP/$f" "docs/data/$f"
+              else
+                echo "data branch has no $f; keeping the bundled copy"
+              fi
+            done
+          else
+            echo "No data branch yet; starting from the copies bundled in docs/data/"
+          fi
       - name: Fetch PreStocks API + on-chain checks
         run: node scripts/fetch-prestocks.mjs
       - name: Fetch xStocks (Backed) public API + on-chain multiplier check
@@ -29,18 +47,31 @@ jobs:
       - name: Depth quotes (Jupiter quote API, read-only) + append history point
         if: always()
         run: node scripts/fetch-depth.mjs
-      - name: Commit snapshot
-        if: always()
+      - name: Commit snapshot to the data branch
+        # Never commit if the seed step failed: history.json would restart from the bundled copy.
+        if: always() && steps.seed.outcome == 'success'
         run: |
-          if git diff --quiet -- docs/data/; then
+          set -euo pipefail
+          files="prestocks.json xstocks.json depth.json history.json"
+          tree="$RUNNER_TEMP/data-branch"
+          if git ls-remote --exit-code --heads origin data >/dev/null; then
+            git fetch --depth=1 origin data
+            git worktree add --detach "$tree" FETCH_HEAD
+          else
+            # First run: create `data` with no history and only the snapshot files.
+            git worktree add --detach "$tree" HEAD
+            git -C "$tree" checkout --orphan data
+            git -C "$tree" rm -rfq .
+          fi
+          for f in $files; do cp "docs/data/$f" "$tree/$f"; done
+          cd "$tree"
+          git add $files
+          if git diff --cached --quiet; then
             echo "No change"; exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/prestocks.json docs/data/xstocks.json docs/data/depth.json docs/data/history.json
-          git commit -m "data: snapshots $(date -u +%Y-%m-%dT%H:%MZ)"
-          for i in 1 2 3; do
-            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && exit 0
-            sleep 5
-          done
-          exit 1
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "data: snapshots $(date -u +%Y-%m-%dT%H:%MZ)"
+          sha=$(git rev-parse HEAD)
+          cd "$GITHUB_WORKSPACE"
+          git push origin "$sha:refs/heads/data"

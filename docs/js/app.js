@@ -1,5 +1,6 @@
 import { runPegWatch } from './peg-watch.js';
 import { THRESHOLDS } from './config.js';
+import { fetchSnapshot } from './data-source.js';
 import { loadDepthAndHistory, findDepth, depthCell, sparkCell, wireCharts, historySummary, labelCells } from './depth.js';
 
 const tbody = document.getElementById('rows');
@@ -76,9 +77,8 @@ function renderPor(result) {
 
 async function loadIssuerSnapshot() {
   try {
-    const res = await fetch(`data/xstocks.json?t=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`data/xstocks.json HTTP ${res.status}`);
-    return { issuer: await res.json(), issuerError: null };
+    const { data } = await fetchSnapshot('xstocks.json');
+    return { issuer: data, issuerError: null };
   } catch (e) {
     return { issuer: null, issuerError: String(e.message || e) };
   }
