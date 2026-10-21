@@ -1,6 +1,6 @@
 # Stocklana — Peg Watch + PreStocks
 
-**Live:** https://alarm2024.github.io/Stocklana/ (tabs: **xStocks** and **PreStocks**)
+**Live:** https://stocklana.elghaly.dev/ (tabs: **xStocks** and **PreStocks**)
 
 ## xStocks tab — Peg Watch
 
@@ -207,7 +207,7 @@ All five mints were verified against the official xStocks / Backed public API (`
 
 ### Web (GitHub Pages)
 
-1. Open https://alarm2024.github.io/Stocklana/ (GitHub Pages from `main` `/docs`), or serve locally: `python3 -m http.server -d docs`.
+1. Open https://stocklana.elghaly.dev/ (GitHub Pages from `main` `/docs`), or serve locally: `python3 -m http.server -d docs`.
 2. Click **Refresh** (xStocks) or switch to the **PreStocks** tab.
 
 ### CLI
