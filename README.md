@@ -190,7 +190,7 @@ Every sub-object has `ok`; when `ok` is `false` it carries `error` instead of va
 |-------|-------------|
 | `cap_days`, `updated_at` | retention (14 days) and last write |
 | `points[].t` | snapshot time (ISO) |
-| `points[].source` | `action` (live run) or `git:<sha>` (seeded from a real past snapshot) |
+| `points[].source` | `action` (scheduled run) or `git:<sha>` (seeded from a real past snapshot) |
 | `points[].prestocks.{SYMBOL}` / `points[].xstocks.{SYMBOL}` | `{p, b10k, s10k}` — headline premium and $10k buy / sell premium vs reference (fractions; `null` = not available) |
 
 ## Mint verification
@@ -268,7 +268,7 @@ node scripts/fetch-prestocks.mjs   # refresh docs/data/prestocks.json locally
 - **xStocks quote is the issuer's indicative price** (`price-data`), not an executable price; issuer data is a ~30-minute snapshot (age shown).
 - **Depth quotes ($1k / $10k) are indicative** Jupiter quote-API results, not executable guarantees and not arbitrage; public quote API rate limits can leave some legs UNKNOWN.
 - **History** holds only real snapshot points (max 14 days); points seeded from git history have the PreStocks headline premium only.
-- **Proof of reserves is shown as published by Backed/xStocks** — not audited or independently verified here; no collateral ratio is derived.
+- **Proof of reserves is shown as published by Backed/xStocks** — not independently checked or verified here; no collateral ratio is derived.
 - **Not all xStocks** — only five liquid names with verified mints and Pyth equity feeds.
 - **Not Hermes price-update API** — Pyth’s Hermes `/v2/updates/price/latest` requires an API key since the Aug 26 2026 upgrade. Peg Watch reads Pyth prices from **on-chain push accounts** via public Solana RPC (keyless). Hermes is used only for **market-hours metadata** (no key).
 - **Pyth equity feeds are not Pyth-sponsored on Solana** — the shard-1 accounts used are kept fresh by whoever pushes updates; if they stop, the age column and REF STALE flag show it. As of 2026-10-20 they have stopped (see the status section above).

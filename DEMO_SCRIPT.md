@@ -45,7 +45,7 @@
 
 > "A third reference: the issuer's own xStocks quote from Backed's public API — MATCH or DIFF against both Jupiter and Pyth. We also show the dividend multiplier, cross-checked against the token's on-chain config, whether trading is halted, and proof of reserves as published by Backed/xStocks."
 
-*[Point at the xStocks quote, Multiplier column, and the proof-of-reserves table. Read figures from the live page.]*
+*[Point at the xStocks quote, Multiplier column, and the proof-of-reserves table. Read figures from the page.]*
 
 ---
 
@@ -75,7 +75,7 @@ node cli.js
 >
 > The PreStocks API can't be called from a browser, so a GitHub Action snapshots it on a 30-minute schedule — and the page always shows the real data age, schedule hiccups included. Anything that failed says UNKNOWN. And to be clear: mark isn't fair value, and a premium isn't an arbitrage."
 
-*[Point at a RICH/CHEAP row, the Jupiter MATCH column, and the "data age" line. Read the figures from the live page — do not quote numbers from this script.]*
+*[Point at a RICH/CHEAP row, the Jupiter MATCH column, and the "data age" line. Read the figures from the page — do not quote numbers from this script.]*
 
 ---
 
