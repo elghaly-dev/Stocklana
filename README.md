@@ -1,6 +1,6 @@
 # Stocklana — Peg Watch + PreStocks
 
-**Live:** https://stocklana.elghaly.dev/ (tabs: **xStocks** and **PreStocks**)
+**Site:** https://stocklana.elghaly.dev/ (tabs: **xStocks** and **PreStocks**)
 
 ## xStocks tab — Peg Watch
 
