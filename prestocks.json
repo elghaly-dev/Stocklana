@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-11-09T09:47:48.292Z",
-  "completed_at": "2026-11-09T09:47:50.995Z",
+  "fetched_at": "2026-11-09T20:43:56.879Z",
+  "completed_at": "2026-11-09T20:43:59.082Z",
   "sources": {
     "prestocks": "https://prestocks.com/api/prestocks",
     "jupiter": "https://api.jup.ag/price/v3",
@@ -10,7 +10,7 @@
     ]
   },
   "last_attempt": {
-    "at": "2026-11-09T09:47:48.292Z",
+    "at": "2026-11-09T20:43:56.879Z",
     "ok": true
   },
   "tokens": [
@@ -20,41 +20,40 @@
       "mint": "PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB",
       "external_url": "https://www.prestocks.com/anduril",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 140.28311191,
-        "tokenPrice": 143.85698485924783,
-        "markValuation": 124108336860,
-        "impliedValuation": 127270138889,
-        "supply": null
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 140.20427533,
+        "tokenPrice": 144.89252820951972,
+        "markValuation": 124038590212,
+        "impliedValuation": 128186283115,
+        "supply": 11055.016597008
       },
-      "premium": 0.025476145350558532,
+      "premium": 0.033438729799679434,
       "premium_flag": null,
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 143.85698485924783,
-          "jupiter": 143.85698485924783,
+          "prestocks": 144.89252820951972,
+          "jupiter": 144.89252820951972,
           "diff": 0,
-          "jupiter_block_id": 467271163,
+          "jupiter_block_id": 467455179,
           "scaled_ui_config": null,
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
-          "status": "UNKNOWN",
-          "prestocks": null,
-          "onchain": 11055.018931556,
-          "slot": 467272600,
+          "status": "MATCH",
+          "prestocks": 11055.016597008,
+          "onchain": 11055.016597008,
+          "slot": 467456056,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:48.798Z",
-          "error": "PreStocks supply missing"
+          "fetched_at": "2026-11-09T20:43:57.310Z"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272600,
+          "slot": 467456057,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.015Z"
+          "fetched_at": "2026-11-09T20:43:57.510Z"
         }
       }
     },
@@ -64,45 +63,44 @@
       "mint": "Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw",
       "external_url": "https://www.prestocks.com/anthropic",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 86.50864222999999,
-        "tokenPrice": 91.93366672336984,
-        "markValuation": 1417307681567,
-        "impliedValuation": 1506188152800,
-        "supply": null
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 86.732376348,
+        "tokenPrice": 93.78668538581915,
+        "markValuation": 1420973212268,
+        "impliedValuation": 1536546941432,
+        "supply": 76804.51579793
       },
-      "premium": 0.06271078072114888,
+      "premium": 0.08133420684237747,
       "premium_flag": null,
       "checks": {
         "jupiter_price": {
-          "status": "DIFF",
-          "prestocks": 91.93366672336984,
-          "jupiter": 90.48924278456535,
-          "diff": 0.01596238286846252,
-          "jupiter_block_id": 467272555,
+          "status": "MATCH",
+          "prestocks": 93.78668538581915,
+          "jupiter": 93.67343844655186,
+          "diff": 0.0012089546529447937,
+          "jupiter_block_id": 467456049,
           "scaled_ui_config": {
             "multiplier": 1,
             "newMultiplier": 10,
             "newMultiplierEffectiveAt": "2026-11-05T04:02:00Z"
           },
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
-          "status": "UNKNOWN",
-          "prestocks": null,
-          "onchain": 76804.63727906,
-          "slot": 467272601,
+          "status": "MATCH",
+          "prestocks": 76804.51579793,
+          "onchain": 76804.51579793,
+          "slot": 467456057,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.213Z",
-          "error": "PreStocks supply missing"
+          "fetched_at": "2026-11-09T20:43:57.684Z"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272602,
+          "slot": 467456057,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.270Z"
+          "fetched_at": "2026-11-09T20:43:57.721Z"
         }
       }
     },
@@ -112,14 +110,14 @@
       "mint": "PreZad18qfPtbxNpMtMuAuX2zVpvkEU8DnJx56faCWd",
       "external_url": "https://www.prestocks.com/figureai",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 189.89210596,
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 189.66163576,
         "tokenPrice": 163.9496730067359,
-        "markValuation": 41401603157,
+        "markValuation": 41351354434,
         "impliedValuation": 35745452741,
         "supply": null
       },
-      "premium": -0.1366167004263399,
+      "premium": -0.13556754717543562,
       "premium_flag": "CHEAP vs mark",
       "checks": {
         "jupiter_price": {
@@ -129,24 +127,24 @@
           "diff": 0,
           "jupiter_block_id": 467204954,
           "scaled_ui_config": null,
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
           "status": "UNKNOWN",
           "prestocks": null,
-          "onchain": 3012.655584864,
-          "slot": 467272602,
+          "onchain": 3012.654612057,
+          "slot": 467456059,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.485Z",
+          "fetched_at": "2026-11-09T20:43:57.895Z",
           "error": "PreStocks supply missing"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272602,
+          "slot": 467456059,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.527Z"
+          "fetched_at": "2026-11-09T20:43:57.920Z"
         }
       }
     },
@@ -156,41 +154,40 @@
       "mint": "PreLWGkkeqG1s4HEfFZSy9moCrJ7btsHuUtfcCeoRua",
       "external_url": "https://www.prestocks.com/kalshi",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 1015.18299004,
-        "tokenPrice": 769.7302206063513,
-        "markValuation": 38079596018,
-        "impliedValuation": 28872642795,
-        "supply": null
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 1013.17473134,
+        "tokenPrice": 769.7942617910581,
+        "markValuation": 38004266072,
+        "impliedValuation": 28875044986,
+        "supply": 904.830765931
       },
-      "premium": -0.24178179879075545,
+      "premium": -0.24021569233872697,
       "premium_flag": "CHEAP vs mark",
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 769.7302206063513,
-          "jupiter": 769.7302206063513,
+          "prestocks": 769.7942617910581,
+          "jupiter": 769.7942617910581,
           "diff": 0,
-          "jupiter_block_id": 467270856,
+          "jupiter_block_id": 467450792,
           "scaled_ui_config": null,
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
-          "status": "UNKNOWN",
-          "prestocks": null,
-          "onchain": 904.830769544,
-          "slot": 467272603,
+          "status": "MATCH",
+          "prestocks": 904.830765931,
+          "onchain": 904.830765931,
+          "slot": 467456059,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.723Z",
-          "error": "PreStocks supply missing"
+          "fetched_at": "2026-11-09T20:43:58.099Z"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272603,
+          "slot": 467456060,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.764Z"
+          "fetched_at": "2026-11-09T20:43:58.117Z"
         }
       }
     },
@@ -200,41 +197,41 @@
       "mint": "PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S",
       "external_url": "https://www.prestocks.com/neuralink",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 335.13089205,
-        "tokenPrice": 382.61898244405415,
-        "markValuation": 63840775872,
-        "impliedValuation": 72887022002,
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 335.76512329,
+        "tokenPrice": 382.0487004557511,
+        "markValuation": 63961593783,
+        "impliedValuation": 72778386107,
         "supply": null
       },
-      "premium": 0.14170012827993528,
+      "premium": 0.13784510050430687,
       "premium_flag": "RICH vs mark",
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 382.61898244405415,
-          "jupiter": 382.61898244405415,
-          "diff": 0,
-          "jupiter_block_id": 467271744,
+          "prestocks": 382.0487004557511,
+          "jupiter": 382.03907838551,
+          "diff": 0.000025186089029904934,
+          "jupiter_block_id": 467455975,
           "scaled_ui_config": null,
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
           "status": "UNKNOWN",
           "prestocks": null,
-          "onchain": 2294.769033979,
-          "slot": 467272603,
+          "onchain": 2294.741845347,
+          "slot": 467456060,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.956Z",
+          "fetched_at": "2026-11-09T20:43:58.290Z",
           "error": "PreStocks supply missing"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272604,
+          "slot": 467456060,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:49.997Z"
+          "fetched_at": "2026-11-09T20:43:58.313Z"
         }
       }
     },
@@ -244,45 +241,45 @@
       "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
       "external_url": "https://www.prestocks.com/openai",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 1010.5508769696313,
-        "tokenPrice": 1109.3308907407384,
-        "markValuation": 1252002098994,
-        "impliedValuation": 1374383650877,
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 1007.3778721807653,
+        "tokenPrice": 1120.8816484779986,
+        "markValuation": 1248070967226,
+        "impliedValuation": 1388694234600,
         "supply": null
       },
-      "premium": 0.09774867947997001,
-      "premium_flag": null,
+      "premium": 0.11267249304525717,
+      "premium_flag": "RICH vs mark",
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 1109.3308907407384,
-          "jupiter": 1109.3308907407384,
-          "diff": 0,
-          "jupiter_block_id": 467271452,
+          "prestocks": 1120.8816484779986,
+          "jupiter": 1111.5318106608333,
+          "diff": 0.008411669128575383,
+          "jupiter_block_id": 467456027,
           "scaled_ui_config": {
             "multiplier": 1,
             "newMultiplier": 1.4861347,
             "newMultiplierEffectiveAt": "2026-07-17T16:30:00Z"
           },
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
           "status": "UNKNOWN",
           "prestocks": null,
-          "onchain": 2528.430305255,
-          "slot": 467272605,
+          "onchain": 2528.420000226,
+          "slot": 467456061,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.201Z",
+          "fetched_at": "2026-11-09T20:43:58.493Z",
           "error": "PreStocks supply missing"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272606,
+          "slot": 467456061,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.248Z"
+          "fetched_at": "2026-11-09T20:43:58.518Z"
         }
       }
     },
@@ -292,45 +289,44 @@
       "mint": "Pre9atBqkocK1QngFy7Q7zvyQictEFpXdLi6bZ2qnYy",
       "external_url": "https://www.prestocks.com/oura",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 36.00180344,
-        "tokenPrice": 31.461862007409206,
-        "markValuation": 14785134883,
-        "impliedValuation": 12920682549,
-        "supply": null
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 36.22929803,
+        "tokenPrice": 31.461256304334363,
+        "markValuation": 14878561819,
+        "impliedValuation": 12920433801,
+        "supply": 2999.578857656
       },
-      "premium": -0.12610316703042357,
+      "premium": -0.13160734501997307,
       "premium_flag": "CHEAP vs mark",
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 31.461862007409206,
-          "jupiter": 31.461862007409206,
+          "prestocks": 31.461256304334363,
+          "jupiter": 31.461256304334363,
           "diff": 0,
-          "jupiter_block_id": 467224838,
+          "jupiter_block_id": 467367632,
           "scaled_ui_config": {
             "multiplier": 1,
             "newMultiplier": 2,
             "newMultiplierEffectiveAt": "2026-11-05T04:02:00Z"
           },
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
-          "status": "UNKNOWN",
-          "prestocks": null,
-          "onchain": 2999.578861136,
-          "slot": 467272607,
+          "status": "MATCH",
+          "prestocks": 2999.578857656,
+          "onchain": 2999.578857656,
+          "slot": 467456062,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.445Z",
-          "error": "PreStocks supply missing"
+          "fetched_at": "2026-11-09T20:43:58.693Z"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272607,
+          "slot": 467456062,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.519Z"
+          "fetched_at": "2026-11-09T20:43:58.721Z"
         }
       }
     },
@@ -340,41 +336,41 @@
       "mint": "Pre8AREmFPtoJFT8mQSXQLh56cwJmM7CFDRuoGBZiUP",
       "external_url": "https://www.prestocks.com/polymarket",
       "prestocks": {
-        "fetched_at": "2026-11-09T09:47:48.292Z",
-        "markPrice": 130.86032815,
-        "tokenPrice": 113.37107116601823,
-        "markValuation": 13624159882,
-        "impliedValuation": 11803314430,
+        "fetched_at": "2026-11-09T20:43:56.879Z",
+        "markPrice": 130.0789957,
+        "tokenPrice": 111.52348247470547,
+        "markValuation": 13542813622,
+        "impliedValuation": 11610957861,
         "supply": null
       },
-      "premium": -0.13364827393627288,
+      "premium": -0.1426480357219927,
       "premium_flag": "CHEAP vs mark",
       "checks": {
         "jupiter_price": {
           "status": "MATCH",
-          "prestocks": 113.37107116601823,
-          "jupiter": 113.37107116601823,
+          "prestocks": 111.52348247470547,
+          "jupiter": 111.52348247470547,
           "diff": 0,
-          "jupiter_block_id": 467271225,
+          "jupiter_block_id": 467455868,
           "scaled_ui_config": null,
-          "fetched_at": "2026-11-09T09:47:48.628Z"
+          "fetched_at": "2026-11-09T20:43:57.125Z"
         },
         "supply": {
           "status": "UNKNOWN",
           "prestocks": null,
-          "onchain": 4815.554089811,
-          "slot": 467272608,
+          "onchain": 4815.548879233,
+          "slot": 467456063,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.720Z",
+          "fetched_at": "2026-11-09T20:43:58.889Z",
           "error": "PreStocks supply missing"
         },
         "mint_exists": {
           "status": "EXISTS",
           "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
           "account_type": "mint",
-          "slot": 467272609,
+          "slot": 467456063,
           "rpc": "https://api.mainnet-beta.solana.com",
-          "fetched_at": "2026-11-09T09:47:50.792Z"
+          "fetched_at": "2026-11-09T20:43:58.909Z"
         }
       }
     }
