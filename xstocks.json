@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-11-13T22:12:07.161Z",
-  "completed_at": "2026-11-13T22:12:20.123Z",
+  "fetched_at": "2026-11-14T02:29:22.484Z",
+  "completed_at": "2026-11-14T02:29:32.400Z",
   "source": "https://api.xstocks.fi/api/v2/public",
   "fallback": "https://api.backed.fi/api/v2/public",
   "assets": [
@@ -9,26 +9,25 @@
       "mint": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB",
       "asset": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.373Z",
+        "fetched_at": "2026-11-14T02:29:22.711Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/TSLAx",
         "name": "Tesla xStock",
         "underlyingSymbol": "TSLA",
         "isTradingHalted": false,
-        "currentPeriod": "extended",
+        "currentPeriod": "closed",
         "solanaMint": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB",
         "mintMatchesConfig": true
       },
       "quote": {
-        "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.375Z",
-        "host": "api.xstocks.fi",
-        "source": "https://api.xstocks.fi/api/v2/public/assets/TSLAx/price-data",
-        "quote": 388.475
+        "ok": false,
+        "fetched_at": "2026-11-14T02:29:23.026Z",
+        "source": "/assets/TSLAx/price-data",
+        "error": "api.xstocks.fi: quote missing or not a number; api.backed.fi: quote missing or not a number"
       },
       "multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.376Z",
+        "fetched_at": "2026-11-14T02:29:22.713Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/TSLAx/multiplier?network=Solana",
         "currentMultiplier": 1,
@@ -38,7 +37,7 @@
       },
       "status": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.377Z",
+        "fetched_at": "2026-11-14T02:29:22.713Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/system/status/TSLAx",
         "isMarketTradingHalted": false,
@@ -46,13 +45,13 @@
       },
       "proof_of_reserves": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.378Z",
+        "fetched_at": "2026-11-14T02:29:22.714Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/proof-of-reserves/TSLAx",
-        "coverage": 1.0012305852696457,
-        "timestamp": "2026-11-13T22:09:44.812Z",
+        "coverage": 1.0012163417748894,
+        "timestamp": "2026-11-14T02:24:43.027Z",
         "sharesHeld": "177716",
-        "circulatingSupply": "177497.57409991478851",
+        "circulatingSupply": "177500.09921427864401",
         "holdings": [
           {
             "provider": "Alpaca",
@@ -63,7 +62,7 @@
       },
       "corporate_actions": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.010Z",
+        "fetched_at": "2026-11-14T02:29:23.262Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/corporate-actions/upcoming?symbol=TSLAx&pageSize=50",
         "upcoming": [],
@@ -71,7 +70,7 @@
         "total_nodes": 0
       },
       "pending_multiplier": {
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "api_newMultiplier": null,
         "api_activationDateTime": null,
         "onchain_newMultiplier": 1,
@@ -80,7 +79,7 @@
       },
       "onchain_multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "multiplier": 1,
         "raw": {
           "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
@@ -88,13 +87,13 @@
           "newMultiplier": "1",
           "newMultiplierEffectiveTimestamp": 0
         },
-        "slot": 469088963
+        "slot": 469160734
       },
       "multiplier_check": {
         "status": "MATCH",
         "backed": 1,
         "onchain": 1,
-        "fetched_at": "2026-11-13T22:12:07.161Z"
+        "fetched_at": "2026-11-14T02:29:22.484Z"
       }
     },
     {
@@ -102,26 +101,25 @@
       "mint": "XsbEhLAtcf6HdfpFZ5xEMdqW8nfAvcsP5bdudRLJzJp",
       "asset": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.485Z",
+        "fetched_at": "2026-11-14T02:29:24.031Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/AAPLx",
         "name": "Apple xStock",
         "underlyingSymbol": "AAPL",
         "isTradingHalted": false,
-        "currentPeriod": "extended",
+        "currentPeriod": "closed",
         "solanaMint": "XsbEhLAtcf6HdfpFZ5xEMdqW8nfAvcsP5bdudRLJzJp",
         "mintMatchesConfig": true
       },
       "quote": {
-        "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.486Z",
-        "host": "api.xstocks.fi",
-        "source": "https://api.xstocks.fi/api/v2/public/assets/AAPLx/price-data",
-        "quote": 355.765
+        "ok": false,
+        "fetched_at": "2026-11-14T02:29:24.459Z",
+        "source": "/assets/AAPLx/price-data",
+        "error": "api.xstocks.fi: quote missing or not a number; api.backed.fi: quote missing or not a number"
       },
       "multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.487Z",
+        "fetched_at": "2026-11-14T02:29:24.032Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/AAPLx/multiplier?network=Solana",
         "currentMultiplier": 1.0038023030588032,
@@ -131,7 +129,7 @@
       },
       "status": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.487Z",
+        "fetched_at": "2026-11-14T02:29:24.032Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/system/status/AAPLx",
         "isMarketTradingHalted": false,
@@ -139,24 +137,24 @@
       },
       "proof_of_reserves": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:09.488Z",
+        "fetched_at": "2026-11-14T02:29:24.033Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/proof-of-reserves/AAPLx",
-        "coverage": 1.0010483817749782,
-        "timestamp": "2026-11-13T22:09:39.760Z",
-        "sharesHeld": "34984",
-        "circulatingSupply": "34947.361822781418885",
+        "coverage": 1.001103618033584,
+        "timestamp": "2026-11-14T02:24:37.989Z",
+        "sharesHeld": "35000",
+        "circulatingSupply": "34961.415950876979395",
         "holdings": [
           {
             "provider": "Alpaca",
-            "quantity": "34984",
+            "quantity": "35000",
             "symbol": "AAPL"
           }
         ]
       },
       "corporate_actions": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.329Z",
+        "fetched_at": "2026-11-14T02:29:24.955Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/corporate-actions/upcoming?symbol=AAPLx&pageSize=50",
         "upcoming": [],
@@ -164,7 +162,7 @@
         "total_nodes": 3
       },
       "pending_multiplier": {
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "api_newMultiplier": null,
         "api_activationDateTime": null,
         "onchain_newMultiplier": 1.0038023030588032,
@@ -173,7 +171,7 @@
       },
       "onchain_multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "multiplier": 1.0038023030588032,
         "raw": {
           "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
@@ -181,13 +179,13 @@
           "newMultiplier": "1.0038023030588032",
           "newMultiplierEffectiveTimestamp": 1794447000
         },
-        "slot": 469088963
+        "slot": 469160734
       },
       "multiplier_check": {
         "status": "MATCH",
         "backed": 1.0038023030588032,
         "onchain": 1.0038023030588032,
-        "fetched_at": "2026-11-13T22:12:07.161Z"
+        "fetched_at": "2026-11-14T02:29:22.484Z"
       }
     },
     {
@@ -195,26 +193,25 @@
       "mint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh",
       "asset": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.757Z",
+        "fetched_at": "2026-11-14T02:29:26.547Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/NVDAx",
         "name": "NVIDIA xStock",
         "underlyingSymbol": "NVDA",
         "isTradingHalted": false,
-        "currentPeriod": "extended",
+        "currentPeriod": "closed",
         "solanaMint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh",
         "mintMatchesConfig": true
       },
       "quote": {
-        "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.757Z",
-        "host": "api.xstocks.fi",
-        "source": "https://api.xstocks.fi/api/v2/public/assets/NVDAx/price-data",
-        "quote": 161.862
+        "ok": false,
+        "fetched_at": "2026-11-14T02:29:27.169Z",
+        "source": "/assets/NVDAx/price-data",
+        "error": "api.xstocks.fi: quote missing or not a number; api.backed.fi: quote missing or not a number"
       },
       "multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.758Z",
+        "fetched_at": "2026-11-14T02:29:26.548Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/NVDAx/multiplier?network=Solana",
         "currentMultiplier": 1.001701196801074,
@@ -224,7 +221,7 @@
       },
       "status": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.759Z",
+        "fetched_at": "2026-11-14T02:29:26.548Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/system/status/NVDAx",
         "isMarketTradingHalted": false,
@@ -232,24 +229,24 @@
       },
       "proof_of_reserves": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:12.759Z",
+        "fetched_at": "2026-11-14T02:29:26.548Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/proof-of-reserves/NVDAx",
-        "coverage": 1.0014843151803352,
-        "timestamp": "2026-11-13T22:11:56.091Z",
-        "sharesHeld": "581185.24989831",
-        "circulatingSupply": "580323.86637394040612",
+        "coverage": 1.0011967957261247,
+        "timestamp": "2026-11-14T02:26:45.608Z",
+        "sharesHeld": "585687",
+        "circulatingSupply": "584986.89018998169719",
         "holdings": [
           {
             "provider": "Alpaca",
-            "quantity": "581185.24989831",
+            "quantity": "585687",
             "symbol": "NVDA"
           }
         ]
       },
       "corporate_actions": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.286Z",
+        "fetched_at": "2026-11-14T02:29:27.538Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/corporate-actions/upcoming?symbol=NVDAx&pageSize=50",
         "upcoming": [],
@@ -257,7 +254,7 @@
         "total_nodes": 3
       },
       "pending_multiplier": {
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "api_newMultiplier": null,
         "api_activationDateTime": null,
         "onchain_newMultiplier": 1.001701196801074,
@@ -266,7 +263,7 @@
       },
       "onchain_multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "multiplier": 1.001701196801074,
         "raw": {
           "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
@@ -274,13 +271,13 @@
           "newMultiplier": "1.001701196801074",
           "newMultiplierEffectiveTimestamp": 1789000200
         },
-        "slot": 469088963
+        "slot": 469160734
       },
       "multiplier_check": {
         "status": "MATCH",
         "backed": 1.001701196801074,
         "onchain": 1.001701196801074,
-        "fetched_at": "2026-11-13T22:12:07.161Z"
+        "fetched_at": "2026-11-14T02:29:22.484Z"
       }
     },
     {
@@ -288,26 +285,25 @@
       "mint": "XsCPL9dNWBMvFtTmwcCA5v3xWPSMEBCszbQdiLLq6aN",
       "asset": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.754Z",
+        "fetched_at": "2026-11-14T02:29:28.668Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/GOOGLx",
         "name": "Alphabet xStock",
         "underlyingSymbol": "GOOGL",
         "isTradingHalted": false,
-        "currentPeriod": "extended",
+        "currentPeriod": "closed",
         "solanaMint": "XsCPL9dNWBMvFtTmwcCA5v3xWPSMEBCszbQdiLLq6aN",
         "mintMatchesConfig": true
       },
       "quote": {
-        "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.755Z",
-        "host": "api.xstocks.fi",
-        "source": "https://api.xstocks.fi/api/v2/public/assets/GOOGLx/price-data",
-        "quote": 294.807
+        "ok": false,
+        "fetched_at": "2026-11-14T02:29:28.803Z",
+        "source": "/assets/GOOGLx/price-data",
+        "error": "api.xstocks.fi: quote missing or not a number; api.backed.fi: quote missing or not a number"
       },
       "multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.755Z",
+        "fetched_at": "2026-11-14T02:29:28.669Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/GOOGLx/multiplier?network=Solana",
         "currentMultiplier": 1.0023772500603487,
@@ -317,7 +313,7 @@
       },
       "status": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.755Z",
+        "fetched_at": "2026-11-14T02:29:28.669Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/system/status/GOOGLx",
         "isMarketTradingHalted": false,
@@ -325,13 +321,13 @@
       },
       "proof_of_reserves": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:14.756Z",
+        "fetched_at": "2026-11-14T02:29:28.669Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/proof-of-reserves/GOOGLx",
-        "coverage": 1.0010928441126599,
-        "timestamp": "2026-11-13T22:11:51.219Z",
+        "coverage": 1.0010928448288468,
+        "timestamp": "2026-11-14T02:26:41.915Z",
         "sharesHeld": "226965",
-        "circulatingSupply": "226717.23340623345339",
+        "circulatingSupply": "226717.23324403879055",
         "holdings": [
           {
             "provider": "Alpaca",
@@ -342,7 +338,7 @@
       },
       "corporate_actions": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:16.816Z",
+        "fetched_at": "2026-11-14T02:29:29.217Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/corporate-actions/upcoming?symbol=GOOGLx&pageSize=50",
         "upcoming": [],
@@ -350,7 +346,7 @@
         "total_nodes": 2
       },
       "pending_multiplier": {
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "api_newMultiplier": null,
         "api_activationDateTime": null,
         "onchain_newMultiplier": 1.0023772500603487,
@@ -359,7 +355,7 @@
       },
       "onchain_multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "multiplier": 1.0023772500603487,
         "raw": {
           "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
@@ -367,13 +363,13 @@
           "newMultiplier": "1.0023772500603487",
           "newMultiplierEffectiveTimestamp": 1788481800
         },
-        "slot": 469088963
+        "slot": 469160734
       },
       "multiplier_check": {
         "status": "MATCH",
         "backed": 1.0023772500603487,
         "onchain": 1.0023772500603487,
-        "fetched_at": "2026-11-13T22:12:07.161Z"
+        "fetched_at": "2026-11-14T02:29:22.484Z"
       }
     },
     {
@@ -381,26 +377,26 @@
       "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
       "asset": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:17.273Z",
+        "fetched_at": "2026-11-14T02:29:29.922Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/SPYx",
         "name": "SP500 xStock",
         "underlyingSymbol": "SPY",
         "isTradingHalted": false,
-        "currentPeriod": "extended",
+        "currentPeriod": "closed",
         "solanaMint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
         "mintMatchesConfig": true
       },
       "quote": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:17.273Z",
+        "fetched_at": "2026-11-14T02:29:29.923Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/SPYx/price-data",
-        "quote": 752.2315
+        "quote": 749.54
       },
       "multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:17.273Z",
+        "fetched_at": "2026-11-14T02:29:29.923Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/assets/SPYx/multiplier?network=Solana",
         "currentMultiplier": 1.007474126658766,
@@ -410,7 +406,7 @@
       },
       "status": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:17.274Z",
+        "fetched_at": "2026-11-14T02:29:29.923Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/system/status/SPYx",
         "isMarketTradingHalted": false,
@@ -418,24 +414,24 @@
       },
       "proof_of_reserves": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:17.274Z",
+        "fetched_at": "2026-11-14T02:29:29.924Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/proof-of-reserves/SPYx",
-        "coverage": 1.0016381752643237,
-        "timestamp": "2026-11-13T22:10:13.509Z",
-        "sharesHeld": "99135.99856414",
-        "circulatingSupply": "98973.862031545332422",
+        "coverage": 1.001975814643937,
+        "timestamp": "2026-11-14T02:25:10.342Z",
+        "sharesHeld": "99409.99856414",
+        "circulatingSupply": "99213.970149036407348",
         "holdings": [
           {
             "provider": "Alpaca",
-            "quantity": "99135.99856414",
+            "quantity": "99409.99856414",
             "symbol": "SPY"
           }
         ]
       },
       "corporate_actions": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:18.616Z",
+        "fetched_at": "2026-11-14T02:29:31.205Z",
         "host": "api.xstocks.fi",
         "source": "https://api.xstocks.fi/api/v2/public/corporate-actions/upcoming?symbol=SPYx&pageSize=50",
         "upcoming": [],
@@ -443,7 +439,7 @@
         "total_nodes": 3
       },
       "pending_multiplier": {
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "api_newMultiplier": null,
         "api_activationDateTime": null,
         "onchain_newMultiplier": 1.007474126658766,
@@ -452,7 +448,7 @@
       },
       "onchain_multiplier": {
         "ok": true,
-        "fetched_at": "2026-11-13T22:12:07.161Z",
+        "fetched_at": "2026-11-14T02:29:22.484Z",
         "multiplier": 1.007474126658766,
         "raw": {
           "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
@@ -460,13 +456,13 @@
           "newMultiplier": "1.007474126658766",
           "newMultiplierEffectiveTimestamp": 1793454300
         },
-        "slot": 469088963
+        "slot": 469160734
       },
       "multiplier_check": {
         "status": "MATCH",
         "backed": 1.007474126658766,
         "onchain": 1.007474126658766,
-        "fetched_at": "2026-11-13T22:12:07.161Z"
+        "fetched_at": "2026-11-14T02:29:22.484Z"
       }
     }
   ]
