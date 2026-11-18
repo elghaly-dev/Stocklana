@@ -151,7 +151,8 @@ async function refresh() {
   refreshBtn.disabled = true;
   try {
     const { issuer, issuerError } = await loadIssuerSnapshot();
-    const [result, dh] = await Promise.all([runPegWatch({ issuer, issuerError }), loadDepthAndHistory()]);
+    const overall = new Promise((_, rej) => setTimeout(() => rej(new Error('live price calls took too long (>8s)')), 15000));
+    const [result, dh] = await Promise.race([Promise.all([runPegWatch({ issuer, issuerError }), loadDepthAndHistory()]), overall]);
     render(result, dh);
     statusEl.textContent = '';
   } catch (err) {

@@ -100,7 +100,7 @@ export async function runPegWatch({ stocks = STOCKS, issuer = null, issuerError 
   ]);
   const pythResults = pythBatch.results;
   // Slot comes from the same RPC response; only fall back to a separate getSlot if needed.
-  const slotInfo = pythBatch.slot != null ? { slot: pythBatch.slot } : await fetchCurrentSlot();
+  const slotInfo = pythBatch.slot != null ? { slot: pythBatch.slot } : pythBatch.rpc == null ? { slot: null } : await fetchCurrentSlot();
 
   const localOpen = isUsMarketOpenLocal(fetchedAt);
   const anyPythOpen = [...marketHoursMap.values()].some((h) => h.is_open);

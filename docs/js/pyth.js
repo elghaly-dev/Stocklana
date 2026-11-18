@@ -1,4 +1,5 @@
 import { ENDPOINTS, PYTH_PROGRAMS, THRESHOLDS } from './config.js';
+import { fetchWithTimeout } from './net.js';
 
 const PYTH_PUSH_ORACLE = 'pythWSnswVUd12oZpeFP8e9CVaEqJg25g1Vtc2biRsT';
 /** Price update accounts are owned by the Pyth Solana Receiver program. */
@@ -88,7 +89,7 @@ export function parsePythPushAccount(data, expectedFeedIdHex) {
 
 async function rpcCall(rpcUrl, method, params) {
   const doFetch = () =>
-    fetch(rpcUrl, {
+    fetchWithTimeout(rpcUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
@@ -213,7 +214,7 @@ export async function fetchPythMarketHours(stocks) {
     stocks.map(async (stock) => {
       try {
         const q = encodeURIComponent(stock.pythSymbol);
-        const res = await fetch(`${ENDPOINTS.pythHermesMeta}?query=${q}`);
+        const res = await fetchWithTimeout(`${ENDPOINTS.pythHermesMeta}?query=${q}`);
         if (!res.ok) return;
         const feeds = await res.json();
         const match = feeds.find((f) => f.attributes?.symbol === stock.pythSymbol);

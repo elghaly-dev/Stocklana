@@ -5,8 +5,9 @@
  * `fallback` is true when the bundled copy was used, so the caller can say so.
  */
 import { DATA_SOURCES } from './config.js';
+import { fetchWithTimeout } from './net.js';
 
-export async function fetchSnapshot(name, { fetchImpl = (...a) => fetch(...a), sources = DATA_SOURCES } = {}) {
+export async function fetchSnapshot(name, { fetchImpl = (...a) => fetchWithTimeout(...a), sources = DATA_SOURCES } = {}) {
   const errors = [];
   for (const [i, base] of sources.entries()) {
     const url = `${base}${name}`;
