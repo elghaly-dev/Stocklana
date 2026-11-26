@@ -1,7 +1,9 @@
 (function(){
   var KEY='house-theme';
+  // Midnight is the elghaly.dev page night with its lapis glow.
+  var NIGHT='radial-gradient(120% 60% at 50% -10%, rgba(42, 76, 179, .30), transparent 60%), radial-gradient(80% 50% at 50% 110%, rgba(196, 161, 236, .10), transparent 70%), #07080c';
   var THEMES={
-    midnight:{bg:'#0b1214',ink:'#e8fbf6',dim:'#9ab3ad',accent:'#2ee6c7',card:'#121a19',line:'rgba(46,230,199,.22)',dot:'#2ee6c7'},
+    midnight:{bg:'#07080c',ink:'#e8fbf6',dim:'#9ab3ad',accent:'#2ee6c7',card:'#121a19',line:'rgba(46,230,199,.22)',dot:'#2ee6c7'},
     dawn:{bg:'#f4f1ea',ink:'#1a1814',dim:'#5c574e',accent:'#0f766e',card:'#fffaf3',line:'rgba(15,118,110,.22)',dot:'#e8efe8'},
     nord:{bg:'#2e3440',ink:'#eceff4',dim:'#88c0d0',accent:'#88c0d0',card:'#3b4252',line:'rgba(136,192,208,.28)',dot:'#88c0d0'},
     solarized:{bg:'#002b36',ink:'#eee8d5',dim:'#93a1a1',accent:'#b58900',card:'#073642',line:'rgba(181,137,0,.28)',dot:'#b58900'},
@@ -22,7 +24,7 @@
     r.style.setProperty('--accent',t.accent);
     r.style.setProperty('--border',t.line);
     r.style.setProperty('--panel',t.card);
-    if(document.body){document.body.style.background=t.bg;document.body.style.color=t.ink;}
+    if(document.body){document.body.style.background=(name==='midnight')?NIGHT:t.bg;document.body.style.color=t.ink;}
     try{localStorage.setItem(KEY,name);}catch(e){}
     document.querySelectorAll('[data-theme-item]').forEach(function(el){
       el.classList.toggle('on', el.getAttribute('data-theme-item')===name);

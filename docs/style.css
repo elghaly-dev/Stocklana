@@ -1,5 +1,6 @@
 :root {
-  --bg: #0b1214;
+  /* page night, as elghaly.dev */
+  --bg: #07080c;
   --surface: #121a19;
   --text: #e8fbf6;
   --muted: #9ab3ad;
@@ -15,7 +16,11 @@
 body {
   margin: 0;
   font-family: var(--sans);
-  background: var(--bg);
+  /* the elghaly.dev page background: night with a lapis glow on top */
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(42, 76, 179, .30), transparent 60%),
+    radial-gradient(80% 50% at 50% 110%, rgba(196, 161, 236, .10), transparent 70%),
+    var(--bg);
   color: var(--text);
   line-height: 1.55;
   padding: 0 1.25rem 3rem;
@@ -32,7 +37,7 @@ body {
   z-index: 50;
   margin: 0 -1.25rem 1rem;
   padding: 10px 16px;
-  background: rgba(11,18,20,.88);
+  background: rgba(13, 17, 32, .7);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
